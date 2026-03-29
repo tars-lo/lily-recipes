@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily's Kitchen</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fef9f3;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .header h1 { font-size: 2rem; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .header p { color: rgba(255,255,255,0.9); margin-top: 0.5rem; }
+        .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
+        .recipe-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .recipe-header {
+            background: #fff5f5;
+            padding: 1rem;
+            border-bottom: 1px solid #fce4e4;
+        }
+        .recipe-header h2 { font-size: 1.25rem; color: #e57373; }
+        .meta { display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.85rem; color: #888; }
+        .meta span { display: flex; align-items: center; gap: 0.25rem; }
+        .tags { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
+        .tag { 
+            background: #e8f5e9; 
+            color: #66bb6a; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 20px; 
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .recipe-body { padding: 1rem; }
+        .section { margin-bottom: 1.25rem; }
+        .section h3 { 
+            font-size: 0.9rem; 
+            color: #e57373; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .section ul, .section ol { padding-left: 1.25rem; }
+        .section li { margin: 0.35rem 0; }
+        .tip {
+            background: #fff8e1;
+            border-left: 3px solid #ffb74d;
+            padding: 0.75rem 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+        .storage {
+            background: #e3f2fd;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        .storage strong { color: #42a5f5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🍼 Lily's Kitchen</h1>
+        <p>Recipes for our little one</p>
+    </div>
+    <div class="container">
+        <div class="recipe-card">
+            <div class="recipe-header">
+                <h2>🥞 Banana Oat Pancakes</h2>
+                <div class="meta">
+                    <span>⏱️ 15 min</span>
+                    <span>🍽️ 6 pancakes</span>
+                    <span>👶 6+ months</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">finger-food</span>
+                    <span class="tag">freezer-friendly</span>
+                    <span class="tag">no-sugar</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="section">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        <li>1 ripe banana</li>
+                        <li>1 egg</li>
+                        <li>½ cup rolled oats (blitzed to flour)</li>
+                        <li>2 tbsp whole milk or formula</li>
+                        <li>Pinch of cinnamon (optional)</li>
+                        <li>Butter or coconut oil for cooking</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>Instructions</h3>
+                    <ol>
+                        <li>Mash banana in a bowl until smooth</li>
+                        <li>Beat in the egg</li>
+                        <li>Add oat flour, milk, and cinnamon. Mix until combined</li>
+                        <li>Heat a non-stick pan over medium-low heat. Add a small amount of butter</li>
+                        <li>Drop spoonfuls of batter (~2 tbsp each). Cook 2 min per side until golden</li>
+                        <li>Cool slightly before serving — these hold heat!</li>
+                    </ol>
+                </div>
+                <div class="section">
+                    <h3>Serving</h3>
+                    <p>Cut into strips for self-feeding. Serve with yogurt or mashed berries on the side.</p>
+                </div>
+                <div class="storage">
+                    <strong>Storage:</strong> Fridge 3 days · Freezer 1 month · Reheat in toaster or microwave
+                </div>
+                <div class="section">
+                    <div class="tip">
+                        💡 Use very ripe banana (brown spots = sweeter). Can double batch and freeze for quick breakfasts!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
