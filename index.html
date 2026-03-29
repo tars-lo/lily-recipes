@@ -19,6 +19,7 @@
             --sage-light: #eef4ee;
             --honey: #d4a96a;
             --honey-light: #faf3e8;
+            --blue-light: #e8f4fa;
             --border: #e8e2dc;
         }
         
@@ -34,10 +35,6 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        .serif {
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif !important;
-        }
-        
         /* ===== HEADER ===== */
         .header {
             background: linear-gradient(160deg, #fdf2f3 0%, #f5f0fa 100%);
@@ -45,14 +42,14 @@
             text-align: center;
         }
         .header h1 { 
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 28px; 
             font-weight: 600; 
             color: #3d3d3d;
             margin-bottom: 4px;
         }
         .header p { 
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 15px; 
             color: #777;
             font-style: italic;
@@ -68,7 +65,7 @@
         .section:last-child { margin-bottom: 0; }
         
         .section-title {
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 18px;
             font-weight: 500;
             margin-bottom: 14px;
@@ -85,29 +82,14 @@
             background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 14px center;
             background-size: 22px;
             -webkit-appearance: none;
-            appearance: none;
         }
-        .search-box:focus {
-            outline: none;
-            border-color: var(--blush);
-        }
+        .search-box:focus { outline: none; border-color: var(--blush); }
         
         /* Buttons Grid */
-        .btn-grid {
-            display: grid;
-            gap: 10px;
-        }
-        .btn-grid.meals {
-            grid-template-columns: 1fr;
-        }
-        .btn-grid.meals .sub-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .btn-grid.tags {
-            grid-template-columns: repeat(2, 1fr);
-        }
+        .btn-grid { display: grid; gap: 10px; }
+        .btn-grid.meals { grid-template-columns: 1fr; }
+        .btn-grid.meals .sub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .btn-grid.tags { grid-template-columns: repeat(2, 1fr); }
         
         .btn {
             display: block;
@@ -122,21 +104,10 @@
             text-align: center;
             cursor: pointer;
             -webkit-appearance: none;
-            appearance: none;
             -webkit-tap-highlight-color: transparent;
-            transition: all 0.15s ease;
         }
-        .btn:active { transform: scale(0.98); }
-        .btn.active {
-            background: var(--blush-light);
-            border-color: var(--blush);
-            color: var(--text);
-        }
-        .btn.tag-active {
-            background: var(--sage-light);
-            border-color: var(--sage);
-            color: var(--text);
-        }
+        .btn.active { background: var(--blush-light); border-color: var(--blush); color: var(--text); }
+        .btn.tag-active { background: var(--sage-light); border-color: var(--sage); color: var(--text); }
         
         /* Sliders */
         .slider-card {
@@ -156,7 +127,7 @@
         }
         .slider-label { font-size: 15px; color: var(--text); }
         .slider-val {
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 22px;
             font-weight: 600;
             color: var(--text);
@@ -164,22 +135,18 @@
         
         input[type="range"] {
             -webkit-appearance: none;
-            appearance: none;
             width: 100%;
             height: 10px;
             background: rgba(255,255,255,0.85);
             border-radius: 5px;
-            outline: none;
         }
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            appearance: none;
             width: 30px;
             height: 30px;
             background: #fff;
             border-radius: 50%;
             box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-            cursor: pointer;
         }
         
         .count {
@@ -187,7 +154,7 @@
             padding-top: 20px;
             margin-top: 20px;
             border-top: 1px solid var(--border);
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 16px;
             font-style: italic;
             color: var(--muted);
@@ -209,16 +176,13 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
         }
-        .card:active { opacity: 0.9; }
         .card.hidden { display: none; }
         
         .card-img {
             width: 100%;
             padding-bottom: 100%;
             position: relative;
-            overflow: hidden;
         }
         .card-img img {
             position: absolute;
@@ -228,23 +192,19 @@
         }
         .card-info { padding: 14px; }
         .card-name {
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 15px;
             font-weight: 500;
             line-height: 1.35;
             margin-bottom: 6px;
-            color: var(--text);
         }
-        .card-meta {
-            font-size: 13px;
-            color: var(--muted);
-        }
+        .card-meta { font-size: 13px; color: var(--muted); }
         
         .empty {
             grid-column: 1 / -1;
             text-align: center;
             padding: 40px 20px;
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-style: italic;
             color: var(--muted);
         }
@@ -295,7 +255,6 @@
             text-align: center;
             cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-            -webkit-appearance: none;
         }
         
         .modal-body {
@@ -305,7 +264,7 @@
             -webkit-overflow-scrolling: touch;
         }
         .modal-title {
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 24px;
             font-weight: 600;
             line-height: 1.3;
@@ -314,11 +273,15 @@
         .modal-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px;
-            font-size: 15px;
-            color: var(--muted);
+            gap: 12px 16px;
+            font-size: 14px;
+            color: var(--text);
             margin-bottom: 14px;
+            padding: 12px 14px;
+            background: var(--honey-light);
+            border-radius: 12px;
         }
+        .modal-meta span { display: flex; align-items: center; gap: 4px; }
         .modal-tags {
             display: flex;
             flex-wrap: wrap;
@@ -335,7 +298,7 @@
         .modal-section { margin-bottom: 22px; }
         .modal-section:last-child { margin-bottom: 0; }
         .modal-section h3 {
-            font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 18px;
             font-weight: 500;
             margin-bottom: 12px;
@@ -351,9 +314,26 @@
             border-radius: 14px;
             padding: 14px 16px;
             font-size: 15px;
+            line-height: 1.6;
         }
-        .modal-box.green { background: var(--sage-light); }
-        .modal-box.yellow { background: var(--honey-light); }
+        .modal-box.storage { background: var(--blue-light); }
+        .modal-box.tip { background: var(--honey-light); }
+        
+        .storage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .storage-item {
+            background: rgba(255,255,255,0.7);
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .storage-item .icon { font-size: 20px; margin-bottom: 4px; }
+        .storage-item .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .storage-item .value { font-size: 14px; font-weight: 500; margin-top: 2px; }
     </style>
 </head>
 <body>
@@ -426,13 +406,13 @@
 <script>
 (function(){
     var data = [
-        {id:1,name:"Cheesy Pasta Bake with Chicken & Broccoli",img:"images/cheesy-pasta-bake.jpg",time:25,age:9,meal:"dinner",tags:["freezer-friendly"],portions:"4 portions",ingredients:["120g pasta shapes","60g broccoli, broken into florets","80g cooked chicken, cut into strips","200ml crème fraîche","40g cheddar cheese, grated"],method:["Preheat oven to 200°C / 180°C fan / Gas 6","Cook pasta according to package, adding broccoli for last 2 min. Drain","Mix crème fraîche with half the cheddar. Combine with pasta, broccoli and chicken","Transfer to ovenproof dish, top with remaining cheese","Bake 15 min until golden and bubbling"],storage:"🧊 Fridge 2 days · ❄️ Freezer 2 months"},
-        {id:2,name:"Tomato, Spinach & Cheese Couscous",img:"images/couscous.jpg",time:25,age:6,meal:"lunch",tags:["vegetarian"],portions:"4 portions",ingredients:["100g couscous","150ml low-salt vegetable stock","1 tbsp olive oil","2 medium tomatoes, roughly chopped","Handful spinach","30g cheddar cheese, grated"],method:["Heat stock and pour over couscous. Cover, leave 5 min, then fluff","Heat oil in pan. Add tomatoes, cook 5 min until soft","Stir in spinach until wilted. Add cheese, stir until melted","Mix into couscous. Serve warm or cold"],storage:"🧊 Fridge 2 days · ❄️ Freezer 1 month"},
-        {id:3,name:"Mini Courgette & Tomato Pizza Bites",img:"images/pizza-bites.jpg",time:35,age:9,meal:"snack",tags:["finger-food","vegetarian","freezer-friendly"],portions:"12 bites",ingredients:["1 medium courgette, grated","60g self-raising flour","1 egg","30g cheddar cheese, grated","6 cherry tomatoes, sliced","1 tbsp tomato purée"],method:["Preheat oven to 200°C / 180°C fan","Squeeze water from courgette","Mix courgette, flour, egg, half the cheese","Spoon into mini muffin tin, press down","Top with purée, tomatoes, cheese","Bake 15-20 min until golden"],storage:"🧊 Fridge 2 days · ❄️ Freezer 2 months"},
-        {id:4,name:"3-Ingredient Pumpkin Orzo",img:"images/pumpkin-orzo.jpg",time:20,age:6,meal:"lunch",tags:["vegetarian","freezer-friendly"],portions:"2 portions",ingredients:["100g orzo pasta","150g pumpkin or butternut squash purée","30g parmesan, grated"],method:["Cook orzo, drain reserving pasta water","Stir in pumpkin purée and parmesan","Add splash of pasta water to loosen","Serve warm"],storage:"🧊 Fridge 2 days · ❄️ Freezer 1 month",note:"Use shop-bought purée for speed."},
-        {id:5,name:"Chicken & Broccoli Rosti",img:"images/chicken-broccoli-rosti.jpg",time:30,age:9,meal:"dinner",tags:["finger-food","dairy-free","freezer-friendly"],portions:"10 rostis",ingredients:["1 large potato, grated","80g cooked chicken, finely chopped","60g broccoli, finely chopped and steamed","1 egg","1 tbsp olive oil"],method:["Squeeze water from potato","Mix potato, chicken, broccoli and egg","Heat oil in pan","Drop spoonfuls, flatten slightly","Cook 3-4 min each side until golden"],storage:"🧊 Fridge 2 days · ❄️ Freezer 2 months"},
-        {id:6,name:"Cottage Cheese, Berry & Oat Muffins",img:"images/berry-muffins.jpg",time:35,age:6,meal:"breakfast",tags:["vegetarian","freezer-friendly"],portions:"12 muffins",ingredients:["150g rolled oats","200g cottage cheese","2 eggs","1 ripe banana","100g mixed berries","1 tsp baking powder"],method:["Preheat oven to 180°C / 160°C fan","Blend oats, cottage cheese, eggs, banana, baking powder","Fold in berries","Divide into muffin tin","Bake 20-25 min until golden"],storage:"🧊 Fridge 3 days · ❄️ Freezer 2 months",note:"Great for batch cooking!"},
-        {id:7,name:"Rainbow Fritters",img:"images/rainbow-fritters.jpg",time:20,age:9,meal:"lunch",tags:["finger-food","vegetarian","freezer-friendly"],portions:"30 fritters",ingredients:["Yellow: 100g sweetcorn, ½ tsp turmeric, 1 egg, 30g flour","Pink: 100g beetroot (grated), 1 egg, 30g flour","Green: 1 courgette (grated), 50g peas, 1 egg, 30g flour"],method:["For each color: mix veg, egg and flour","Heat oil in pan","Drop spoonfuls, flatten","Cook 2-3 min each side","Drain on paper"],storage:"🧊 Fridge 2 days · ❄️ Freezer 2 months",note:"Make all 3 colors for a rainbow plate!"}
+        {id:1,name:"Cheesy Pasta Bake with Chicken & Broccoli",img:"images/cheesy-pasta-bake.jpg",prep:5,cook:20,time:25,age:9,meal:"dinner",tags:["freezer-friendly"],portions:"4 portions",ingredients:["120g pasta shapes","60g broccoli, broken into florets","80g cooked chicken, cut into strips","200ml crème fraîche","40g cheddar cheese, grated"],method:["Preheat oven to 200°C / 180°C fan / Gas 6","Cook pasta according to package, adding broccoli for last 2 min. Drain","Mix crème fraîche with half the cheddar. Combine with pasta, broccoli and chicken","Transfer to ovenproof dish, top with remaining cheese","Bake 15 min until golden and bubbling"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 2 mins or oven 180°C for 10 mins"},
+        {id:2,name:"Tomato, Spinach & Cheese Couscous",img:"images/couscous.jpg",prep:10,cook:15,time:25,age:6,meal:"lunch",tags:["vegetarian"],portions:"4 portions",ingredients:["100g couscous","150ml low-salt vegetable stock","1 tbsp olive oil","2 medium tomatoes, roughly chopped","Handful spinach","30g cheddar cheese, grated"],method:["Heat stock and pour over couscous. Cover, leave 5 min, then fluff","Heat oil in pan. Add tomatoes, cook 5 min until soft","Stir in spinach until wilted. Add cheese, stir until melted","Mix into couscous. Serve warm or cold"],fridge:"2 days",freezer:"1 month",reheat:"Microwave 1 min, stir halfway"},
+        {id:3,name:"Mini Courgette & Tomato Pizza Bites",img:"images/pizza-bites.jpg",prep:15,cook:20,time:35,age:9,meal:"snack",tags:["finger-food","vegetarian","freezer-friendly"],portions:"12 bites",ingredients:["1 medium courgette, grated","60g self-raising flour","1 egg","30g cheddar cheese, grated","6 cherry tomatoes, sliced","1 tbsp tomato purée"],method:["Preheat oven to 200°C / 180°C fan","Squeeze water from courgette","Mix courgette, flour, egg, half the cheese","Spoon into mini muffin tin, press down","Top with purée, tomatoes, cheese","Bake 15-20 min until golden"],fridge:"2 days",freezer:"2 months",reheat:"Oven 180°C for 8 mins from frozen"},
+        {id:4,name:"3-Ingredient Pumpkin Orzo",img:"images/pumpkin-orzo.jpg",prep:10,cook:10,time:20,age:6,meal:"lunch",tags:["vegetarian","freezer-friendly"],portions:"2 portions",ingredients:["100g orzo pasta","150g pumpkin or butternut squash purée","30g parmesan, grated"],method:["Cook orzo, drain reserving pasta water","Stir in pumpkin purée and parmesan","Add splash of pasta water to loosen","Serve warm"],fridge:"2 days",freezer:"1 month",reheat:"Microwave 1 min, add splash of water",note:"Use shop-bought purée for speed."},
+        {id:5,name:"Chicken & Broccoli Rosti",img:"images/chicken-broccoli-rosti.jpg",prep:10,cook:20,time:30,age:9,meal:"dinner",tags:["finger-food","dairy-free","freezer-friendly"],portions:"10 rostis",ingredients:["1 large potato, grated","80g cooked chicken, finely chopped","60g broccoli, finely chopped and steamed","1 egg","1 tbsp olive oil"],method:["Squeeze water from potato","Mix potato, chicken, broccoli and egg","Heat oil in pan","Drop spoonfuls, flatten slightly","Cook 3-4 min each side until golden"],fridge:"2 days",freezer:"2 months",reheat:"Pan-fry from frozen 4 mins each side"},
+        {id:6,name:"Cottage Cheese, Berry & Oat Muffins",img:"images/berry-muffins.jpg",prep:10,cook:25,time:35,age:6,meal:"breakfast",tags:["vegetarian","freezer-friendly"],portions:"12 muffins",ingredients:["150g rolled oats","200g cottage cheese","2 eggs","1 ripe banana","100g mixed berries","1 tsp baking powder"],method:["Preheat oven to 180°C / 160°C fan","Blend oats, cottage cheese, eggs, banana, baking powder","Fold in berries","Divide into muffin tin","Bake 20-25 min until golden"],fridge:"3 days",freezer:"2 months",reheat:"Microwave 30 secs or defrost overnight",note:"Great for batch cooking!"},
+        {id:7,name:"Rainbow Fritters",img:"images/rainbow-fritters.jpg",prep:10,cook:10,time:20,age:9,meal:"lunch",tags:["finger-food","vegetarian","freezer-friendly"],portions:"30 fritters",ingredients:["Yellow: 100g sweetcorn, ½ tsp turmeric, 1 egg, 30g flour","Pink: 100g beetroot (grated), 1 egg, 30g flour","Green: 1 courgette (grated), 50g peas, 1 egg, 30g flour"],method:["For each color: mix veg, egg and flour","Heat oil in pan","Drop spoonfuls, flatten","Cook 2-3 min each side","Drain on paper"],fridge:"2 days",freezer:"2 months",reheat:"Pan-fry from frozen 3 mins each side",note:"Make all 3 colors for a rainbow plate!"}
     ];
     
     var grid=document.getElementById('grid'),search=document.getElementById('search'),timeRange=document.getElementById('timeRange'),ageRange=document.getElementById('ageRange'),timeVal=document.getElementById('timeVal'),ageVal=document.getElementById('ageVal'),count=document.getElementById('count'),overlay=document.getElementById('overlay'),modalImg=document.getElementById('modalImg'),modalBody=document.getElementById('modalBody'),modalX=document.getElementById('modalX'),modal=document.getElementById('modal');
@@ -476,11 +456,29 @@
         var thtml='';for(var t=0;t<r.tags.length;t++){var e='🏷️';if(r.tags[t]=='finger-food')e='👆';if(r.tags[t]=='freezer-friendly')e='❄️';if(r.tags[t]=='vegetarian')e='🥬';if(r.tags[t]=='dairy-free')e='🥛';thtml+='<span class="modal-tag">'+e+' '+r.tags[t]+'</span>';}
         var ihtml='';for(var j=0;j<r.ingredients.length;j++){ihtml+='<li>'+r.ingredients[j]+'</li>';}
         var mhtml='';for(var k=0;k<r.method.length;k++){mhtml+='<li>'+r.method[k]+'</li>';}
-        var h='<div class="modal-title">'+r.name+'</div><div class="modal-meta"><span>⏱️ '+r.time+' mins</span><span>🍽️ '+r.portions+'</span><span>👶 '+r.age+'+ months</span></div><div class="modal-tags">'+thtml+'</div>';
+        
+        var h='<div class="modal-title">'+r.name+'</div>';
+        h+='<div class="modal-meta">';
+        h+='<span>🥣 '+r.prep+' min prep</span>';
+        h+='<span>🍳 '+r.cook+' min cook</span>';
+        h+='<span>🍽️ '+r.portions+'</span>';
+        h+='<span>👶 '+r.age+'+ months</span>';
+        h+='</div>';
+        h+='<div class="modal-tags">'+thtml+'</div>';
         h+='<div class="modal-section"><h3>🥗 Ingredients</h3><ul>'+ihtml+'</ul></div>';
         h+='<div class="modal-section"><h3>👩‍🍳 Method</h3><ol>'+mhtml+'</ol></div>';
-        h+='<div class="modal-section"><div class="modal-box green">'+r.storage+'</div></div>';
-        if(r.note)h+='<div class="modal-section"><div class="modal-box yellow">💡 '+r.note+'</div></div>';
+        
+        h+='<div class="modal-section"><div class="modal-box storage">';
+        h+='<strong>📦 Storage</strong>';
+        h+='<div class="storage-grid">';
+        h+='<div class="storage-item"><div class="icon">🧊</div><div class="label">Fridge</div><div class="value">'+r.fridge+'</div></div>';
+        h+='<div class="storage-item"><div class="icon">❄️</div><div class="label">Freezer</div><div class="value">'+r.freezer+'</div></div>';
+        h+='</div>';
+        h+='<div style="margin-top:10px;font-size:14px;"><strong>🔄 Reheat:</strong> '+r.reheat+'</div>';
+        h+='</div></div>';
+        
+        if(r.note)h+='<div class="modal-section"><div class="modal-box tip">💡 '+r.note+'</div></div>';
+        
         modalBody.innerHTML=h;
         overlay.className='overlay open';
         document.body.style.overflow='hidden';
