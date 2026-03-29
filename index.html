@@ -26,7 +26,6 @@
             font-size: 14px;
         }
         
-        /* Header */
         .header {
             background: var(--panel-bg);
             padding: 1.25rem 1rem;
@@ -36,22 +35,23 @@
         .header h1 { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.02em; }
         .header p { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
         
-        /* Filters */
         .filters {
             background: var(--panel-bg);
             padding: 1rem;
             border-bottom: 1px solid var(--border);
         }
-        .filter-row { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+        .filter-row { display: -webkit-flex; display: flex; gap: 0.5rem; margin-bottom: 0.75rem; -webkit-flex-wrap: wrap; flex-wrap: wrap; }
         .filter-row:last-child { margin-bottom: 0; }
         .search-input {
-            flex: 1;
+            -webkit-flex: 1; flex: 1;
             min-width: 150px;
             padding: 0.5rem 0.75rem;
             border: 1px solid var(--border);
             border-radius: 4px;
             font-size: 0.8rem;
             font-family: inherit;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .search-input:focus { outline: none; border-color: var(--text-muted); }
         .filter-btn {
@@ -63,20 +63,24 @@
             font-family: inherit;
             color: var(--text-muted);
             cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .filter-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
-        .slider-group { display: flex; align-items: center; gap: 0.5rem; flex: 1; }
+        .slider-group { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; gap: 0.5rem; -webkit-flex: 1; flex: 1; }
         .slider-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; }
         .slider-value { font-size: 0.7rem; min-width: 45px; text-align: right; }
         input[type="range"] {
-            flex: 1;
+            -webkit-flex: 1; flex: 1;
             -webkit-appearance: none;
+            appearance: none;
             height: 2px;
             background: var(--border);
             border-radius: 2px;
         }
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
+            appearance: none;
             width: 14px;
             height: 14px;
             background: var(--text);
@@ -90,37 +94,42 @@
             margin-top: 0.75rem;
         }
         
-        /* Grid */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: -webkit-flex; display: flex;
+            -webkit-flex-wrap: wrap; flex-wrap: wrap;
             gap: 0.75rem;
             padding: 1rem;
             max-width: 600px;
             margin: 0 auto;
         }
         
-        /* Card */
         .card {
+            width: calc(50% - 0.375rem);
             background: var(--panel-bg);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0,0,0,0.06);
             cursor: pointer;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
-        .card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .card.hidden { display: none; }
-        .card-image {
+        .card-image-wrap {
+            position: relative;
             width: 100%;
-            aspect-ratio: 1;
+            padding-bottom: 100%;
+            overflow: hidden;
+        }
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
         .card-body { padding: 0.6rem 0.75rem; }
         .card-title { font-size: 0.75rem; font-weight: 500; line-height: 1.3; margin-bottom: 0.25rem; }
         .card-meta { font-size: 0.6rem; color: var(--text-muted); }
         
-        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -130,10 +139,10 @@
             bottom: 0;
             background: rgba(0,0,0,0.5);
             z-index: 1000;
-            align-items: flex-end;
-            justify-content: center;
+            -webkit-align-items: flex-end; align-items: flex-end;
+            -webkit-justify-content: center; justify-content: center;
         }
-        .modal-overlay.active { display: flex; }
+        .modal-overlay.active { display: -webkit-flex; display: flex; }
         .modal {
             background: var(--panel-bg);
             width: 100%;
@@ -141,19 +150,23 @@
             max-height: 90vh;
             border-radius: 16px 16px 0 0;
             overflow: hidden;
+            -webkit-animation: slideUp 0.25s ease;
             animation: slideUp 0.25s ease;
+        }
+        @-webkit-keyframes slideUp {
+            from { -webkit-transform: translateY(100%); transform: translateY(100%); }
+            to { -webkit-transform: translateY(0); transform: translateY(0); }
         }
         @keyframes slideUp {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
         }
-        .modal-header {
-            position: relative;
-        }
+        .modal-header { position: relative; }
         .modal-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            display: block;
         }
         .modal-close {
             position: absolute;
@@ -166,18 +179,21 @@
             border: none;
             font-size: 1.25rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: -webkit-flex; display: flex;
+            -webkit-align-items: center; align-items: center;
+            -webkit-justify-content: center; justify-content: center;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .modal-content {
             padding: 1.25rem;
             max-height: calc(90vh - 200px);
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .modal-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .modal-meta { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
-        .modal-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .modal-meta { display: -webkit-flex; display: flex; gap: 1rem; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+        .modal-tags { display: -webkit-flex; display: flex; gap: 0.35rem; -webkit-flex-wrap: wrap; flex-wrap: wrap; margin-bottom: 1rem; }
         .modal-tag {
             background: var(--tag-bg);
             padding: 0.2rem 0.5rem;
@@ -226,7 +242,7 @@
         <div class="filter-row">
             <input type="text" class="search-input" placeholder="🔍 Search..." id="searchBox">
         </div>
-        <div class="filter-row">
+        <div class="filter-row" id="mealFilters">
             <button class="filter-btn active" data-meal="all">all</button>
             <button class="filter-btn" data-meal="breakfast">breakfast</button>
             <button class="filter-btn" data-meal="lunch">lunch</button>
@@ -245,7 +261,7 @@
                 <span class="slider-value" id="ageValue">6+</span>
             </div>
         </div>
-        <div class="filter-row">
+        <div class="filter-row" id="tagFilters">
             <button class="filter-btn" data-tag="finger-food">finger food</button>
             <button class="filter-btn" data-tag="freezer-friendly">freezer</button>
             <button class="filter-btn" data-tag="vegetarian">veg</button>
@@ -258,7 +274,7 @@
     <div class="no-results hidden" id="noResults">No recipes match</div>
     
     <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
+        <div class="modal" id="modal">
             <div class="modal-header">
                 <img class="modal-image" id="modalImage" src="" alt="">
                 <button class="modal-close" id="modalClose">×</button>
@@ -268,229 +284,276 @@
     </div>
 
     <script>
-    const recipes = [
-        {
-            id: 1,
-            title: "Cheesy Pasta Bake with Chicken & Broccoli",
-            image: "images/cheesy-pasta-bake.jpg",
-            time: 25, age: 9, meal: "dinner",
-            tags: ["freezer-friendly"],
-            portions: "4 portions",
-            ingredients: ["120g pasta shapes", "60g broccoli, broken into florets", "80g cooked chicken, cut into strips", "200ml crème fraîche", "40g cheddar cheese, grated"],
-            method: ["Preheat oven to 200°C / 180°C fan / Gas 6", "Cook pasta according to package, adding broccoli for last 2 min. Drain and set aside", "Mix crème fraîche with half the cheddar. Combine with pasta, broccoli and chicken", "Transfer to ovenproof dish, top with remaining cheese", "Bake 15 min until golden and bubbling"],
-            storage: "fridge 2 days · freezer 2 months"
-        },
-        {
-            id: 2,
-            title: "Tomato, Spinach & Cheese Couscous",
-            image: "images/couscous.jpg",
-            time: 25, age: 6, meal: "lunch",
-            tags: ["vegetarian"],
-            portions: "4 portions",
-            ingredients: ["100g couscous", "150ml low-salt vegetable stock", "1 tbsp olive oil", "2 medium tomatoes, roughly chopped", "Handful spinach", "30g cheddar cheese, grated"],
-            method: ["Heat stock and pour over couscous. Cover, leave 5 min, then fluff", "Heat oil in pan over medium heat. Add tomatoes, cook 5 min until soft", "Stir in spinach until wilted. Add cheese, stir until melted", "Mix tomato mixture into couscous. Serve warm or cold"],
-            storage: "fridge 2 days · freezer 1 month"
-        },
-        {
-            id: 3,
-            title: "Mini Courgette & Tomato Pizza Bites",
-            image: "images/pizza-bites.jpg",
-            time: 35, age: 9, meal: "snack",
-            tags: ["finger-food", "vegetarian", "freezer-friendly"],
-            portions: "12 bites",
-            ingredients: ["1 medium courgette, grated", "60g self-raising flour", "1 egg", "30g cheddar cheese, grated", "6 cherry tomatoes, sliced", "1 tbsp tomato purée"],
-            method: ["Preheat oven to 200°C / 180°C fan / Gas 6", "Squeeze excess water from grated courgette", "Mix courgette, flour, egg, and half the cheese", "Spoon into greased mini muffin tin. Press down to create bases", "Add tomato purée, tomato slices, remaining cheese on top", "Bake 15-20 min until golden"],
-            storage: "fridge 2 days · freezer 2 months"
-        },
-        {
-            id: 4,
-            title: "3-Ingredient Pumpkin Orzo",
-            image: "images/pumpkin-orzo.jpg",
-            time: 20, age: 6, meal: "lunch",
-            tags: ["vegetarian", "freezer-friendly"],
-            portions: "2 portions",
-            ingredients: ["100g orzo pasta", "150g pumpkin or butternut squash purée", "30g parmesan, grated"],
-            method: ["Cook orzo according to package instructions. Drain, reserving some pasta water", "Return orzo to pan. Stir in pumpkin purée and parmesan", "Add a splash of pasta water to loosen if needed", "Serve warm"],
-            storage: "fridge 2 days · freezer 1 month",
-            note: "Use shop-bought purée for speed, or roast your own squash."
-        },
-        {
-            id: 5,
-            title: "Chicken & Broccoli Rosti",
-            image: "images/chicken-broccoli-rosti.jpg",
-            time: 30, age: 9, meal: "dinner",
-            tags: ["finger-food", "dairy-free", "freezer-friendly"],
-            portions: "10 rostis",
-            ingredients: ["1 large potato, peeled and grated", "80g cooked chicken, finely chopped", "60g broccoli, finely chopped and steamed", "1 egg", "1 tbsp olive oil"],
-            method: ["Squeeze excess water from grated potato using a clean tea towel", "Mix potato, chicken, broccoli and egg in a bowl", "Heat oil in a frying pan over medium heat", "Drop spoonfuls of mixture, flatten slightly", "Cook 3-4 min each side until golden and cooked through"],
-            storage: "fridge 2 days · freezer 2 months"
-        },
-        {
-            id: 6,
-            title: "Cottage Cheese, Berry & Oat Muffins",
-            image: "images/berry-muffins.jpg",
-            time: 35, age: 6, meal: "breakfast",
-            tags: ["vegetarian", "freezer-friendly"],
-            portions: "12 muffins",
-            ingredients: ["150g rolled oats", "200g cottage cheese", "2 eggs", "1 ripe banana", "100g mixed berries (fresh or frozen)", "1 tsp baking powder"],
-            method: ["Preheat oven to 180°C / 160°C fan / Gas 4", "Blend oats, cottage cheese, eggs, banana and baking powder until smooth", "Fold in berries", "Divide mixture into greased muffin tin", "Bake 20-25 min until golden and firm to touch"],
-            storage: "fridge 3 days · freezer 2 months",
-            note: "Great for batch cooking. Defrost overnight or microwave 30 sec."
-        },
-        {
-            id: 7,
-            title: "Rainbow Fritters",
-            image: "images/rainbow-fritters.jpg",
-            time: 20, age: 9, meal: "lunch",
-            tags: ["finger-food", "vegetarian", "freezer-friendly"],
-            portions: "30 fritters",
-            ingredients: ["Yellow: 100g sweetcorn, ½ tsp turmeric, 1 egg, 30g flour", "Pink: 100g cooked beetroot (grated), 1 egg, 30g flour", "Green: 1 courgette (grated), 50g peas, 1 egg, 30g flour"],
-            method: ["For each color: mix vegetables, egg and flour", "Heat oil in frying pan over medium heat", "Drop spoonfuls of mixture, flatten slightly", "Cook 2-3 min each side until golden", "Drain on kitchen paper"],
-            storage: "fridge 2 days · freezer 2 months",
-            note: "Make all 3 colors for a rainbow plate! Great for fussy eaters."
-        }
-    ];
+    (function() {
+        var recipes = [
+            {
+                id: 1,
+                title: "Cheesy Pasta Bake with Chicken & Broccoli",
+                image: "images/cheesy-pasta-bake.jpg",
+                time: 25, age: 9, meal: "dinner",
+                tags: ["freezer-friendly"],
+                portions: "4 portions",
+                ingredients: ["120g pasta shapes", "60g broccoli, broken into florets", "80g cooked chicken, cut into strips", "200ml crème fraîche", "40g cheddar cheese, grated"],
+                method: ["Preheat oven to 200°C / 180°C fan / Gas 6", "Cook pasta according to package, adding broccoli for last 2 min. Drain and set aside", "Mix crème fraîche with half the cheddar. Combine with pasta, broccoli and chicken", "Transfer to ovenproof dish, top with remaining cheese", "Bake 15 min until golden and bubbling"],
+                storage: "fridge 2 days · freezer 2 months"
+            },
+            {
+                id: 2,
+                title: "Tomato, Spinach & Cheese Couscous",
+                image: "images/couscous.jpg",
+                time: 25, age: 6, meal: "lunch",
+                tags: ["vegetarian"],
+                portions: "4 portions",
+                ingredients: ["100g couscous", "150ml low-salt vegetable stock", "1 tbsp olive oil", "2 medium tomatoes, roughly chopped", "Handful spinach", "30g cheddar cheese, grated"],
+                method: ["Heat stock and pour over couscous. Cover, leave 5 min, then fluff", "Heat oil in pan over medium heat. Add tomatoes, cook 5 min until soft", "Stir in spinach until wilted. Add cheese, stir until melted", "Mix tomato mixture into couscous. Serve warm or cold"],
+                storage: "fridge 2 days · freezer 1 month"
+            },
+            {
+                id: 3,
+                title: "Mini Courgette & Tomato Pizza Bites",
+                image: "images/pizza-bites.jpg",
+                time: 35, age: 9, meal: "snack",
+                tags: ["finger-food", "vegetarian", "freezer-friendly"],
+                portions: "12 bites",
+                ingredients: ["1 medium courgette, grated", "60g self-raising flour", "1 egg", "30g cheddar cheese, grated", "6 cherry tomatoes, sliced", "1 tbsp tomato purée"],
+                method: ["Preheat oven to 200°C / 180°C fan / Gas 6", "Squeeze excess water from grated courgette", "Mix courgette, flour, egg, and half the cheese", "Spoon into greased mini muffin tin. Press down to create bases", "Add tomato purée, tomato slices, remaining cheese on top", "Bake 15-20 min until golden"],
+                storage: "fridge 2 days · freezer 2 months"
+            },
+            {
+                id: 4,
+                title: "3-Ingredient Pumpkin Orzo",
+                image: "images/pumpkin-orzo.jpg",
+                time: 20, age: 6, meal: "lunch",
+                tags: ["vegetarian", "freezer-friendly"],
+                portions: "2 portions",
+                ingredients: ["100g orzo pasta", "150g pumpkin or butternut squash purée", "30g parmesan, grated"],
+                method: ["Cook orzo according to package instructions. Drain, reserving some pasta water", "Return orzo to pan. Stir in pumpkin purée and parmesan", "Add a splash of pasta water to loosen if needed", "Serve warm"],
+                storage: "fridge 2 days · freezer 1 month",
+                note: "Use shop-bought purée for speed, or roast your own squash."
+            },
+            {
+                id: 5,
+                title: "Chicken & Broccoli Rosti",
+                image: "images/chicken-broccoli-rosti.jpg",
+                time: 30, age: 9, meal: "dinner",
+                tags: ["finger-food", "dairy-free", "freezer-friendly"],
+                portions: "10 rostis",
+                ingredients: ["1 large potato, peeled and grated", "80g cooked chicken, finely chopped", "60g broccoli, finely chopped and steamed", "1 egg", "1 tbsp olive oil"],
+                method: ["Squeeze excess water from grated potato using a clean tea towel", "Mix potato, chicken, broccoli and egg in a bowl", "Heat oil in a frying pan over medium heat", "Drop spoonfuls of mixture, flatten slightly", "Cook 3-4 min each side until golden and cooked through"],
+                storage: "fridge 2 days · freezer 2 months"
+            },
+            {
+                id: 6,
+                title: "Cottage Cheese, Berry & Oat Muffins",
+                image: "images/berry-muffins.jpg",
+                time: 35, age: 6, meal: "breakfast",
+                tags: ["vegetarian", "freezer-friendly"],
+                portions: "12 muffins",
+                ingredients: ["150g rolled oats", "200g cottage cheese", "2 eggs", "1 ripe banana", "100g mixed berries (fresh or frozen)", "1 tsp baking powder"],
+                method: ["Preheat oven to 180°C / 160°C fan / Gas 4", "Blend oats, cottage cheese, eggs, banana and baking powder until smooth", "Fold in berries", "Divide mixture into greased muffin tin", "Bake 20-25 min until golden and firm to touch"],
+                storage: "fridge 3 days · freezer 2 months",
+                note: "Great for batch cooking. Defrost overnight or microwave 30 sec."
+            },
+            {
+                id: 7,
+                title: "Rainbow Fritters",
+                image: "images/rainbow-fritters.jpg",
+                time: 20, age: 9, meal: "lunch",
+                tags: ["finger-food", "vegetarian", "freezer-friendly"],
+                portions: "30 fritters",
+                ingredients: ["Yellow: 100g sweetcorn, ½ tsp turmeric, 1 egg, 30g flour", "Pink: 100g cooked beetroot (grated), 1 egg, 30g flour", "Green: 1 courgette (grated), 50g peas, 1 egg, 30g flour"],
+                method: ["For each color: mix vegetables, egg and flour", "Heat oil in frying pan over medium heat", "Drop spoonfuls of mixture, flatten slightly", "Cook 2-3 min each side until golden", "Drain on kitchen paper"],
+                storage: "fridge 2 days · freezer 2 months",
+                note: "Make all 3 colors for a rainbow plate! Great for fussy eaters."
+            }
+        ];
 
-    const grid = document.getElementById('grid');
-    const searchBox = document.getElementById('searchBox');
-    const timeSlider = document.getElementById('timeSlider');
-    const ageSlider = document.getElementById('ageSlider');
-    const timeValue = document.getElementById('timeValue');
-    const ageValue = document.getElementById('ageValue');
-    const resultsCount = document.getElementById('resultsCount');
-    const noResults = document.getElementById('noResults');
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalImage = document.getElementById('modalImage');
-    const modalContent = document.getElementById('modalContent');
-    const modalClose = document.getElementById('modalClose');
+        var grid = document.getElementById('grid');
+        var searchBox = document.getElementById('searchBox');
+        var timeSlider = document.getElementById('timeSlider');
+        var ageSlider = document.getElementById('ageSlider');
+        var timeValue = document.getElementById('timeValue');
+        var ageValue = document.getElementById('ageValue');
+        var resultsCount = document.getElementById('resultsCount');
+        var noResults = document.getElementById('noResults');
+        var modalOverlay = document.getElementById('modalOverlay');
+        var modalImage = document.getElementById('modalImage');
+        var modalContent = document.getElementById('modalContent');
+        var modalClose = document.getElementById('modalClose');
+        var modal = document.getElementById('modal');
 
-    let activeMeal = 'all';
-    let activeTags = new Set();
+        var activeMeal = 'all';
+        var activeTags = [];
 
-    // Render cards
-    function renderCards() {
-        grid.innerHTML = recipes.map(r => `
-            <div class="card" data-id="${r.id}" data-meal="${r.meal}" data-time="${r.time}" data-age="${r.age}" data-tags="${r.tags.join(',')}" data-search="${r.title.toLowerCase()} ${r.ingredients.join(' ').toLowerCase()}">
-                <img class="card-image" src="${r.image}" alt="${r.title}">
-                <div class="card-body">
-                    <div class="card-title">${r.title}</div>
-                    <div class="card-meta">${r.time}m · ${r.age}+ mo</div>
-                </div>
-            </div>
-        `).join('');
-        
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => openModal(parseInt(card.dataset.id)));
-        });
-    }
-
-    function updateFilters() {
-        const searchTerm = searchBox.value.toLowerCase();
-        const maxTime = parseInt(timeSlider.value);
-        const minAge = parseInt(ageSlider.value);
-        let visible = 0;
-        
-        document.querySelectorAll('.card').forEach(card => {
-            const meal = card.dataset.meal;
-            const time = parseInt(card.dataset.time);
-            const age = parseInt(card.dataset.age);
-            const tags = card.dataset.tags.split(',').filter(t => t);
-            const searchText = card.dataset.search;
+        function renderCards() {
+            var html = '';
+            for (var i = 0; i < recipes.length; i++) {
+                var r = recipes[i];
+                html += '<div class="card" data-id="' + r.id + '" data-meal="' + r.meal + '" data-time="' + r.time + '" data-age="' + r.age + '" data-tags="' + r.tags.join(',') + '" data-search="' + (r.title + ' ' + r.ingredients.join(' ')).toLowerCase() + '">';
+                html += '<div class="card-image-wrap"><img class="card-image" src="' + r.image + '" alt="' + r.title + '"></div>';
+                html += '<div class="card-body">';
+                html += '<div class="card-title">' + r.title + '</div>';
+                html += '<div class="card-meta">' + r.time + 'm · ' + r.age + '+ mo</div>';
+                html += '</div></div>';
+            }
+            grid.innerHTML = html;
             
-            let show = true;
-            if (activeMeal !== 'all' && meal !== activeMeal) show = false;
-            if (time > maxTime) show = false;
-            if (age > minAge) show = false;
-            if (activeTags.size > 0) {
-                for (const tag of activeTags) {
-                    if (!tags.includes(tag)) show = false;
+            var cards = document.querySelectorAll('.card');
+            for (var j = 0; j < cards.length; j++) {
+                (function(card) {
+                    card.addEventListener('click', function() {
+                        openModal(parseInt(card.getAttribute('data-id')));
+                    });
+                })(cards[j]);
+            }
+        }
+
+        function updateFilters() {
+            var searchTerm = searchBox.value.toLowerCase();
+            var maxTime = parseInt(timeSlider.value);
+            var minAge = parseInt(ageSlider.value);
+            var visible = 0;
+            
+            var cards = document.querySelectorAll('.card');
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                var meal = card.getAttribute('data-meal');
+                var time = parseInt(card.getAttribute('data-time'));
+                var age = parseInt(card.getAttribute('data-age'));
+                var tagsStr = card.getAttribute('data-tags');
+                var tags = tagsStr ? tagsStr.split(',') : [];
+                var searchText = card.getAttribute('data-search');
+                
+                var show = true;
+                if (activeMeal !== 'all' && meal !== activeMeal) show = false;
+                if (time > maxTime) show = false;
+                if (age > minAge) show = false;
+                
+                for (var t = 0; t < activeTags.length; t++) {
+                    var found = false;
+                    for (var k = 0; k < tags.length; k++) {
+                        if (tags[k] === activeTags[t]) found = true;
+                    }
+                    if (!found) show = false;
+                }
+                
+                if (searchTerm && searchText.indexOf(searchTerm) === -1) show = false;
+                
+                if (show) {
+                    card.className = 'card';
+                    visible++;
+                } else {
+                    card.className = 'card hidden';
                 }
             }
-            if (searchTerm && !searchText.includes(searchTerm)) show = false;
             
-            card.classList.toggle('hidden', !show);
-            if (show) visible++;
-        });
-        
-        resultsCount.textContent = `${visible} recipe${visible !== 1 ? 's' : ''}`;
-        noResults.classList.toggle('hidden', visible > 0);
-    }
+            resultsCount.textContent = visible + ' recipe' + (visible !== 1 ? 's' : '');
+            noResults.className = visible > 0 ? 'no-results hidden' : 'no-results';
+        }
 
-    function openModal(id) {
-        const r = recipes.find(x => x.id === id);
-        if (!r) return;
-        
-        modalImage.src = r.image;
-        modalContent.innerHTML = `
-            <div class="modal-title">${r.title}</div>
-            <div class="modal-meta">
-                <span>⏱️ ${r.time} min</span>
-                <span>🍽️ ${r.portions}</span>
-                <span>👶 ${r.age}+ months</span>
-            </div>
-            <div class="modal-tags">
-                ${r.tags.map(t => `<span class="modal-tag">${t}</span>`).join('')}
-            </div>
-            <div class="modal-section">
-                <h3>Ingredients</h3>
-                <ul>${r.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
-            </div>
-            <div class="modal-section">
-                <h3>Method</h3>
-                <ol>${r.method.map(m => `<li>${m}</li>`).join('')}</ol>
-            </div>
-            <div class="modal-section">
-                <div class="modal-storage">${r.storage}</div>
-            </div>
-            ${r.note ? `<div class="modal-section"><div class="modal-note">💡 ${r.note}</div></div>` : ''}
-        `;
-        modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+        function openModal(id) {
+            var r = null;
+            for (var i = 0; i < recipes.length; i++) {
+                if (recipes[i].id === id) r = recipes[i];
+            }
+            if (!r) return;
+            
+            modalImage.src = r.image;
+            
+            var tagsHtml = '';
+            for (var t = 0; t < r.tags.length; t++) {
+                tagsHtml += '<span class="modal-tag">' + r.tags[t] + '</span>';
+            }
+            
+            var ingredientsHtml = '';
+            for (var j = 0; j < r.ingredients.length; j++) {
+                ingredientsHtml += '<li>' + r.ingredients[j] + '</li>';
+            }
+            
+            var methodHtml = '';
+            for (var k = 0; k < r.method.length; k++) {
+                methodHtml += '<li>' + r.method[k] + '</li>';
+            }
+            
+            var html = '<div class="modal-title">' + r.title + '</div>';
+            html += '<div class="modal-meta"><span>⏱️ ' + r.time + ' min</span><span>🍽️ ' + r.portions + '</span><span>👶 ' + r.age + '+ months</span></div>';
+            html += '<div class="modal-tags">' + tagsHtml + '</div>';
+            html += '<div class="modal-section"><h3>Ingredients</h3><ul>' + ingredientsHtml + '</ul></div>';
+            html += '<div class="modal-section"><h3>Method</h3><ol>' + methodHtml + '</ol></div>';
+            html += '<div class="modal-section"><div class="modal-storage">' + r.storage + '</div></div>';
+            if (r.note) {
+                html += '<div class="modal-section"><div class="modal-note">💡 ' + r.note + '</div></div>';
+            }
+            
+            modalContent.innerHTML = html;
+            modalOverlay.className = 'modal-overlay active';
+            document.body.style.overflow = 'hidden';
+        }
 
-    function closeModal() {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+        function closeModal() {
+            modalOverlay.className = 'modal-overlay';
+            document.body.style.overflow = '';
+        }
 
-    // Event listeners
-    document.querySelectorAll('[data-meal]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('[data-meal]').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            activeMeal = btn.dataset.meal;
+        // Meal filters
+        var mealBtns = document.querySelectorAll('#mealFilters .filter-btn');
+        for (var m = 0; m < mealBtns.length; m++) {
+            (function(btn) {
+                btn.addEventListener('click', function() {
+                    for (var x = 0; x < mealBtns.length; x++) {
+                        mealBtns[x].className = 'filter-btn';
+                    }
+                    btn.className = 'filter-btn active';
+                    activeMeal = btn.getAttribute('data-meal');
+                    updateFilters();
+                });
+            })(mealBtns[m]);
+        }
+
+        // Tag filters
+        var tagBtns = document.querySelectorAll('#tagFilters .filter-btn');
+        for (var n = 0; n < tagBtns.length; n++) {
+            (function(btn) {
+                btn.addEventListener('click', function() {
+                    var tag = btn.getAttribute('data-tag');
+                    var idx = activeTags.indexOf(tag);
+                    if (idx > -1) {
+                        activeTags.splice(idx, 1);
+                        btn.className = 'filter-btn';
+                    } else {
+                        activeTags.push(tag);
+                        btn.className = 'filter-btn active';
+                    }
+                    updateFilters();
+                });
+            })(tagBtns[n]);
+        }
+
+        timeSlider.addEventListener('input', function() {
+            timeValue.textContent = timeSlider.value + 'm';
             updateFilters();
         });
-    });
 
-    document.querySelectorAll('[data-tag]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            btn.classList.toggle('active');
-            const tag = btn.dataset.tag;
-            activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
+        ageSlider.addEventListener('input', function() {
+            ageValue.textContent = ageSlider.value + '+';
             updateFilters();
         });
-    });
 
-    timeSlider.addEventListener('input', () => {
-        timeValue.textContent = `${timeSlider.value}m`;
+        searchBox.addEventListener('input', updateFilters);
+        
+        modalClose.addEventListener('click', closeModal);
+        
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+        
+        modal.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        renderCards();
         updateFilters();
-    });
-
-    ageSlider.addEventListener('input', () => {
-        ageValue.textContent = `${ageSlider.value}+`;
-        updateFilters();
-    });
-
-    searchBox.addEventListener('input', updateFilters);
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) closeModal();
-    });
-
-    // Init
-    renderCards();
-    updateFilters();
+    })();
     </script>
 </body>
 </html>
