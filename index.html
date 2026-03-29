@@ -14,12 +14,73 @@
         }
         .header {
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem 1rem;
             text-align: center;
         }
-        .header h1 { font-size: 2rem; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
-        .header p { color: rgba(255,255,255,0.9); margin-top: 0.5rem; }
+        .header h1 { font-size: 1.75rem; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .header p { color: rgba(255,255,255,0.9); margin-top: 0.25rem; font-size: 0.9rem; }
+        
+        /* Filters */
+        .filters {
+            background: #fff;
+            padding: 1rem;
+            border-bottom: 1px solid #f0e6e6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .filter-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        .filter-btn {
+            padding: 0.4rem 0.8rem;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 20px;
+            background: #fff;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover { border-color: #ff9a9e; }
+        .filter-btn.active { 
+            background: #ff9a9e; 
+            color: #fff; 
+            border-color: #ff9a9e;
+        }
+        .search-box {
+            width: 100%;
+            max-width: 300px;
+            padding: 0.5rem 1rem;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0 auto;
+            display: block;
+        }
+        .search-box:focus { outline: none; border-color: #ff9a9e; }
+        .filter-label {
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+            text-align: center;
+        }
+        .filter-group { margin-bottom: 0.5rem; }
+        
         .container { max-width: 600px; margin: 0 auto; padding: 1rem; }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #999;
+        }
+        .no-results span { font-size: 3rem; display: block; margin-bottom: 1rem; }
+        
         .recipe-card {
             background: #fff;
             border-radius: 16px;
@@ -27,13 +88,14 @@
             margin: 1rem 0;
             overflow: hidden;
         }
+        .recipe-card.hidden { display: none; }
         .recipe-header {
             background: #fff5f5;
             padding: 1rem;
             border-bottom: 1px solid #fce4e4;
         }
         .recipe-header h2 { font-size: 1.25rem; color: #e57373; }
-        .meta { display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.85rem; color: #888; }
+        .meta { display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.85rem; color: #888; flex-wrap: wrap; }
         .meta span { display: flex; align-items: center; gap: 0.25rem; }
         .tags { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
         .tag { 
@@ -69,6 +131,13 @@
             font-size: 0.85rem;
         }
         .storage strong { color: #42a5f5; }
+        
+        .recipe-count {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+            margin: 0.5rem 0;
+        }
     </style>
 </head>
 <body>
@@ -76,8 +145,47 @@
         <h1>🍼 Lily's Kitchen</h1>
         <p>Recipes for our little one</p>
     </div>
-    <div class="container">
-        <div class="recipe-card">
+    
+    <div class="filters">
+        <input type="text" class="search-box" placeholder="🔍 Search recipes..." id="searchBox">
+        
+        <div class="filter-group">
+            <div class="filter-label">Meal</div>
+            <div class="filter-row" id="mealFilters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="breakfast">🌅 Breakfast</button>
+                <button class="filter-btn" data-filter="lunch">☀️ Lunch</button>
+                <button class="filter-btn" data-filter="dinner">🌙 Dinner</button>
+                <button class="filter-btn" data-filter="snack">🍪 Snack</button>
+            </div>
+        </div>
+        
+        <div class="filter-group">
+            <div class="filter-label">Time</div>
+            <div class="filter-row" id="timeFilters">
+                <button class="filter-btn active" data-time="all">All</button>
+                <button class="filter-btn" data-time="quick">⚡ Quick (&lt;15m)</button>
+                <button class="filter-btn" data-time="medium">🕐 Medium</button>
+                <button class="filter-btn" data-time="longer">🍳 Longer</button>
+            </div>
+        </div>
+        
+        <div class="filter-group">
+            <div class="filter-label">Tags</div>
+            <div class="filter-row" id="tagFilters">
+                <button class="filter-btn" data-tag="finger-food">👆 Finger Food</button>
+                <button class="filter-btn" data-tag="freezer-friendly">❄️ Freezer</button>
+                <button class="filter-btn" data-tag="no-sugar">🚫🍬 No Sugar</button>
+                <button class="filter-btn" data-tag="dairy-free">🥛❌ Dairy-Free</button>
+            </div>
+        </div>
+        
+        <div class="recipe-count" id="recipeCount">Showing 2 recipes</div>
+    </div>
+    
+    <div class="container" id="recipeContainer">
+        <!-- Recipe 1: Banana Oat Pancakes -->
+        <div class="recipe-card" data-meal="breakfast" data-time="quick" data-tags="finger-food,freezer-friendly,no-sugar" data-search="banana oat pancakes breakfast finger food baby led weaning">
             <div class="recipe-header">
                 <h2>🥞 Banana Oat Pancakes</h2>
                 <div class="meta">
@@ -128,6 +236,141 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Recipe 2: Avocado Egg Mash -->
+        <div class="recipe-card" data-meal="lunch" data-time="quick" data-tags="no-sugar" data-search="avocado egg mash lunch protein healthy fats">
+            <div class="recipe-header">
+                <h2>🥑 Avocado Egg Mash</h2>
+                <div class="meta">
+                    <span>⏱️ 10 min</span>
+                    <span>🍽️ 1 serving</span>
+                    <span>👶 6+ months</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">no-sugar</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="section">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        <li>½ ripe avocado</li>
+                        <li>1 hard-boiled egg</li>
+                        <li>1 tbsp breast milk or formula (optional, for texture)</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h3>Instructions</h3>
+                    <ol>
+                        <li>Hard boil egg (10 min), cool, and peel</li>
+                        <li>Scoop avocado into bowl</li>
+                        <li>Add egg and mash together with fork</li>
+                        <li>Add milk to thin if needed</li>
+                    </ol>
+                </div>
+                <div class="storage">
+                    <strong>Storage:</strong> Best fresh — avocado browns quickly. Can store 1 day with lemon juice.
+                </div>
+                <div class="section">
+                    <div class="tip">
+                        💡 Great protein + healthy fats combo. Can spread on toast strips for finger food.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="no-results hidden" id="noResults">
+            <span>🍽️</span>
+            No recipes match your filters.<br>
+            Try adjusting your search!
+        </div>
     </div>
+    
+    <script>
+        const recipes = document.querySelectorAll('.recipe-card');
+        const searchBox = document.getElementById('searchBox');
+        const recipeCount = document.getElementById('recipeCount');
+        const noResults = document.getElementById('noResults');
+        
+        let activeMeal = 'all';
+        let activeTime = 'all';
+        let activeTags = new Set();
+        
+        function updateFilters() {
+            const searchTerm = searchBox.value.toLowerCase();
+            let visible = 0;
+            
+            recipes.forEach(recipe => {
+                const meal = recipe.dataset.meal;
+                const time = recipe.dataset.time;
+                const tags = recipe.dataset.tags.split(',');
+                const searchText = recipe.dataset.search;
+                
+                let show = true;
+                
+                // Meal filter
+                if (activeMeal !== 'all' && meal !== activeMeal) show = false;
+                
+                // Time filter
+                if (activeTime !== 'all' && time !== activeTime) show = false;
+                
+                // Tag filters (must have ALL selected tags)
+                if (activeTags.size > 0) {
+                    for (const tag of activeTags) {
+                        if (!tags.includes(tag)) show = false;
+                    }
+                }
+                
+                // Search
+                if (searchTerm && !searchText.includes(searchTerm)) show = false;
+                
+                recipe.classList.toggle('hidden', !show);
+                if (show) visible++;
+            });
+            
+            recipeCount.textContent = `Showing ${visible} recipe${visible !== 1 ? 's' : ''}`;
+            noResults.classList.toggle('hidden', visible > 0);
+        }
+        
+        // Meal filters
+        document.querySelectorAll('#mealFilters .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#mealFilters .filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeMeal = btn.dataset.filter;
+                updateFilters();
+            });
+        });
+        
+        // Time filters
+        document.querySelectorAll('#timeFilters .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#timeFilters .filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeTime = btn.dataset.time;
+                updateFilters();
+            });
+        });
+        
+        // Tag filters (toggle)
+        document.querySelectorAll('#tagFilters .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('active');
+                const tag = btn.dataset.tag;
+                if (activeTags.has(tag)) {
+                    activeTags.delete(tag);
+                } else {
+                    activeTags.add(tag);
+                }
+                updateFilters();
+            });
+        });
+        
+        // Search
+        searchBox.addEventListener('input', updateFilters);
+        
+        // Initial count
+        updateFilters();
+    </script>
 </body>
 </html>
