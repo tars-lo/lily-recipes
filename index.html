@@ -17,48 +17,28 @@
             --border: #e8e6e3;
             --tag-bg: #f0eeeb;
         }
-        
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         body { 
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             font-size: 14px;
-            font-weight: 400;
         }
-        
-        /* Control Panel */
         .panel {
             background: var(--panel-bg);
             border-bottom: 1px solid var(--border);
             padding: 1.5rem 1.25rem;
         }
-        
         .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 1.5rem;
         }
-        
-        .panel-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-        }
-        
-        .panel-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 0.02em;
-        }
-        
-        .control-group {
-            margin-bottom: 1.25rem;
-        }
-        
+        .panel-title { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.02em; }
+        .panel-subtitle { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.02em; }
+        .control-group { margin-bottom: 1.25rem; }
         .control-label {
             font-size: 0.65rem;
             text-transform: uppercase;
@@ -67,15 +47,12 @@
             margin-bottom: 0.5rem;
             display: block;
         }
-        
-        /* Segment Control */
         .segment-control {
             display: flex;
             border: 1px solid var(--border);
             border-radius: 4px;
             overflow: hidden;
         }
-        
         .segment-btn {
             flex: 1;
             padding: 0.5rem 0.25rem;
@@ -88,34 +65,12 @@
             transition: all 0.15s ease;
             border-right: 1px solid var(--border);
         }
-        
         .segment-btn:last-child { border-right: none; }
         .segment-btn:hover { background: var(--tag-bg); }
-        .segment-btn.active { 
-            background: var(--text);
-            color: #fff;
-        }
-        
-        /* Slider */
-        .slider-row {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .slider-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            min-width: 60px;
-        }
-        
-        .slider-value {
-            font-size: 0.75rem;
-            color: var(--text);
-            min-width: 50px;
-            text-align: right;
-        }
-        
+        .segment-btn.active { background: var(--text); color: #fff; }
+        .slider-row { display: flex; align-items: center; gap: 1rem; }
+        .slider-label { font-size: 0.75rem; color: var(--text-muted); min-width: 60px; }
+        .slider-value { font-size: 0.75rem; color: var(--text); min-width: 50px; text-align: right; }
         input[type="range"] {
             -webkit-appearance: none;
             flex: 1;
@@ -124,7 +79,6 @@
             border-radius: 2px;
             outline: none;
         }
-        
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 12px;
@@ -133,14 +87,7 @@
             border-radius: 2px;
             cursor: pointer;
         }
-        
-        /* Toggle Pills */
-        .toggle-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
+        .toggle-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .toggle-pill {
             padding: 0.35rem 0.75rem;
             border: 1px solid var(--border);
@@ -152,15 +99,8 @@
             cursor: pointer;
             transition: all 0.15s ease;
         }
-        
         .toggle-pill:hover { border-color: var(--text-muted); }
-        .toggle-pill.active { 
-            background: var(--text);
-            color: #fff;
-            border-color: var(--text);
-        }
-        
-        /* Search */
+        .toggle-pill.active { background: var(--text); color: #fff; border-color: var(--text); }
         .search-input {
             width: 100%;
             padding: 0.6rem 0.75rem;
@@ -170,17 +110,8 @@
             font-family: inherit;
             background: transparent;
         }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--text-muted);
-        }
-        
-        .search-input::placeholder {
-            color: var(--text-muted);
-        }
-        
-        /* Results count */
+        .search-input:focus { outline: none; border-color: var(--text-muted); }
+        .search-input::placeholder { color: var(--text-muted); }
         .results-count {
             font-size: 0.7rem;
             color: var(--text-muted);
@@ -189,14 +120,7 @@
             border-top: 1px solid var(--border);
             margin-top: 0.5rem;
         }
-        
-        /* Recipe Cards */
-        .container {
-            max-width: 540px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        
+        .container { max-width: 540px; margin: 0 auto; padding: 1rem; }
         .recipe-card {
             background: var(--panel-bg);
             border: 1px solid var(--border);
@@ -204,35 +128,19 @@
             margin-bottom: 1rem;
             overflow: hidden;
         }
-        
         .recipe-card.hidden { display: none; }
-        
+        .recipe-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
         .recipe-header {
             padding: 1rem 1.25rem;
             border-bottom: 1px solid var(--border);
         }
-        
-        .recipe-title {
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .recipe-meta {
-            display: flex;
-            gap: 1.25rem;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-        
-        .recipe-tags {
-            display: flex;
-            gap: 0.35rem;
-            margin-top: 0.6rem;
-            flex-wrap: wrap;
-        }
-        
+        .recipe-title { font-size: 1rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+        .recipe-meta { display: flex; gap: 1.25rem; font-size: 0.7rem; color: var(--text-muted); }
+        .recipe-tags { display: flex; gap: 0.35rem; margin-top: 0.6rem; flex-wrap: wrap; }
         .recipe-tag {
             background: var(--tag-bg);
             padding: 0.2rem 0.5rem;
@@ -240,17 +148,9 @@
             font-size: 0.65rem;
             color: var(--text-muted);
         }
-        
-        .recipe-body {
-            padding: 1rem 1.25rem;
-        }
-        
-        .recipe-section {
-            margin-bottom: 1rem;
-        }
-        
+        .recipe-body { padding: 1rem 1.25rem; }
+        .recipe-section { margin-bottom: 1rem; }
         .recipe-section:last-child { margin-bottom: 0; }
-        
         .recipe-section h3 {
             font-size: 0.65rem;
             text-transform: uppercase;
@@ -259,16 +159,8 @@
             margin-bottom: 0.5rem;
             font-weight: 400;
         }
-        
-        .recipe-section ul, .recipe-section ol {
-            padding-left: 1.25rem;
-            font-size: 0.85rem;
-        }
-        
-        .recipe-section li {
-            margin: 0.25rem 0;
-        }
-        
+        .recipe-section ul, .recipe-section ol { padding-left: 1.25rem; font-size: 0.85rem; }
+        .recipe-section li { margin: 0.25rem 0; }
         .recipe-note {
             background: var(--accent-light);
             border-left: 2px solid var(--accent);
@@ -276,7 +168,6 @@
             font-size: 0.8rem;
             border-radius: 0 4px 4px 0;
         }
-        
         .recipe-storage {
             background: var(--tag-bg);
             padding: 0.6rem 0.75rem;
@@ -284,14 +175,7 @@
             font-size: 0.75rem;
             color: var(--text-muted);
         }
-        
-        .no-results {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-        
+        .no-results { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 0.85rem; }
         .no-results.hidden { display: none; }
     </style>
 </head>
@@ -301,12 +185,10 @@
             <span class="panel-title">Lily's Kitchen</span>
             <span class="panel-subtitle">baby recipes</span>
         </div>
-        
         <div class="control-group">
             <label class="control-label">Search</label>
             <input type="text" class="search-input" placeholder="ingredients, name..." id="searchBox">
         </div>
-        
         <div class="control-group">
             <label class="control-label">Meal</label>
             <div class="segment-control" id="mealControl">
@@ -317,7 +199,6 @@
                 <button class="segment-btn" data-value="snack">snack</button>
             </div>
         </div>
-        
         <div class="control-group">
             <div class="slider-row">
                 <span class="slider-label">max time</span>
@@ -325,7 +206,6 @@
                 <span class="slider-value" id="timeValue">60 min</span>
             </div>
         </div>
-        
         <div class="control-group">
             <div class="slider-row">
                 <span class="slider-label">age</span>
@@ -333,110 +213,324 @@
                 <span class="slider-value" id="ageValue">6+ mo</span>
             </div>
         </div>
-        
         <div class="control-group">
             <label class="control-label">Tags</label>
             <div class="toggle-row" id="tagToggles">
                 <button class="toggle-pill" data-tag="finger-food">finger food</button>
                 <button class="toggle-pill" data-tag="freezer-friendly">freezer</button>
-                <button class="toggle-pill" data-tag="no-sugar">no sugar</button>
+                <button class="toggle-pill" data-tag="vegetarian">vegetarian</button>
                 <button class="toggle-pill" data-tag="dairy-free">dairy-free</button>
                 <button class="toggle-pill" data-tag="high-iron">high iron</button>
             </div>
         </div>
-        
-        <div class="results-count" id="resultsCount">2 recipes</div>
+        <div class="results-count" id="resultsCount">7 recipes</div>
     </div>
-    
     <div class="container" id="recipeContainer">
-        
-        <div class="recipe-card" data-meal="breakfast" data-time="15" data-age="6" data-tags="finger-food,freezer-friendly,no-sugar" data-search="banana oat pancakes breakfast">
+
+        <!-- 1. Cheesy Pasta Bake with Chicken & Broccoli -->
+        <div class="recipe-card" data-meal="dinner" data-time="25" data-age="9" data-tags="freezer-friendly" data-search="cheesy pasta bake chicken broccoli cheese">
+            <img src="images/cheesy-pasta-bake.jpg" alt="Cheesy Pasta Bake" class="recipe-image">
             <div class="recipe-header">
-                <div class="recipe-title">Banana Oat Pancakes</div>
+                <div class="recipe-title">Cheesy Pasta Bake with Chicken & Broccoli</div>
                 <div class="recipe-meta">
-                    <span>15 min</span>
-                    <span>6 pancakes</span>
+                    <span>25 min</span>
+                    <span>4 portions</span>
+                    <span>9+ months</span>
+                </div>
+                <div class="recipe-tags">
+                    <span class="recipe-tag">freezer-friendly</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-section">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        <li>120g pasta shapes</li>
+                        <li>60g broccoli, broken into florets</li>
+                        <li>80g cooked chicken, cut into strips</li>
+                        <li>200ml crème fraîche</li>
+                        <li>40g cheddar cheese, grated</li>
+                    </ul>
+                </div>
+                <div class="recipe-section">
+                    <h3>Method</h3>
+                    <ol>
+                        <li>Preheat oven to 200°C / 180°C fan / Gas 6</li>
+                        <li>Cook pasta according to package, adding broccoli for last 2 min. Drain and set aside</li>
+                        <li>Mix crème fraîche with half the cheddar. Combine with pasta, broccoli and chicken</li>
+                        <li>Transfer to ovenproof dish, top with remaining cheese</li>
+                        <li>Bake 15 min until golden and bubbling</li>
+                    </ol>
+                </div>
+                <div class="recipe-section">
+                    <div class="recipe-storage">fridge 2 days · freezer 2 months</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Tomato, Spinach & Cheese Couscous -->
+        <div class="recipe-card" data-meal="lunch" data-time="25" data-age="6" data-tags="vegetarian" data-search="tomato spinach cheese couscous">
+            <img src="images/couscous.jpg" alt="Couscous" class="recipe-image">
+            <div class="recipe-header">
+                <div class="recipe-title">Tomato, Spinach & Cheese Couscous</div>
+                <div class="recipe-meta">
+                    <span>25 min</span>
+                    <span>4 portions</span>
                     <span>6+ months</span>
+                </div>
+                <div class="recipe-tags">
+                    <span class="recipe-tag">vegetarian</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-section">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        <li>100g couscous</li>
+                        <li>150ml low-salt vegetable stock</li>
+                        <li>1 tbsp olive oil</li>
+                        <li>2 medium tomatoes, roughly chopped</li>
+                        <li>Handful spinach</li>
+                        <li>30g cheddar cheese, grated</li>
+                    </ul>
+                </div>
+                <div class="recipe-section">
+                    <h3>Method</h3>
+                    <ol>
+                        <li>Heat stock and pour over couscous. Cover, leave 5 min, then fluff</li>
+                        <li>Heat oil in pan over medium heat. Add tomatoes, cook 5 min until soft</li>
+                        <li>Stir in spinach until wilted. Add cheese, stir until melted</li>
+                        <li>Mix tomato mixture into couscous. Serve warm or cold</li>
+                    </ol>
+                </div>
+                <div class="recipe-section">
+                    <div class="recipe-storage">fridge 2 days · freezer 1 month</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Mini Courgette & Tomato Pizza Bites -->
+        <div class="recipe-card" data-meal="snack" data-time="35" data-age="9" data-tags="finger-food,vegetarian,freezer-friendly" data-search="courgette tomato pizza bites zucchini">
+            <img src="images/pizza-bites.jpg" alt="Pizza Bites" class="recipe-image">
+            <div class="recipe-header">
+                <div class="recipe-title">Mini Courgette & Tomato Pizza Bites</div>
+                <div class="recipe-meta">
+                    <span>35 min</span>
+                    <span>12 bites</span>
+                    <span>9+ months</span>
                 </div>
                 <div class="recipe-tags">
                     <span class="recipe-tag">finger-food</span>
+                    <span class="recipe-tag">vegetarian</span>
                     <span class="recipe-tag">freezer-friendly</span>
-                    <span class="recipe-tag">no-sugar</span>
                 </div>
             </div>
             <div class="recipe-body">
                 <div class="recipe-section">
                     <h3>Ingredients</h3>
                     <ul>
-                        <li>1 ripe banana</li>
+                        <li>1 medium courgette, grated</li>
+                        <li>60g self-raising flour</li>
                         <li>1 egg</li>
-                        <li>½ cup rolled oats (blitzed)</li>
-                        <li>2 tbsp milk or formula</li>
-                        <li>pinch of cinnamon</li>
+                        <li>30g cheddar cheese, grated</li>
+                        <li>6 cherry tomatoes, sliced</li>
+                        <li>1 tbsp tomato purée</li>
                     </ul>
                 </div>
                 <div class="recipe-section">
                     <h3>Method</h3>
                     <ol>
-                        <li>Mash banana until smooth</li>
-                        <li>Beat in egg, add oat flour and milk</li>
-                        <li>Cook spoonfuls in buttered pan, 2 min each side</li>
-                        <li>Cool before serving — cut into strips</li>
+                        <li>Preheat oven to 200°C / 180°C fan / Gas 6</li>
+                        <li>Squeeze excess water from grated courgette</li>
+                        <li>Mix courgette, flour, egg, and half the cheese</li>
+                        <li>Spoon into greased mini muffin tin. Press down to create bases</li>
+                        <li>Add tomato purée, tomato slices, remaining cheese on top</li>
+                        <li>Bake 15-20 min until golden</li>
                     </ol>
                 </div>
                 <div class="recipe-section">
-                    <div class="recipe-storage">fridge 3 days · freezer 1 month · reheat in toaster</div>
-                </div>
-                <div class="recipe-section">
-                    <div class="recipe-note">Use very ripe banana (brown spots = sweeter). Double batch for freezer stash.</div>
+                    <div class="recipe-storage">fridge 2 days · freezer 2 months</div>
                 </div>
             </div>
         </div>
-        
-        <div class="recipe-card" data-meal="lunch" data-time="10" data-age="6" data-tags="no-sugar,high-iron" data-search="avocado egg mash protein">
+
+        <!-- 4. 3-Ingredient Pumpkin Orzo -->
+        <div class="recipe-card" data-meal="lunch" data-time="20" data-age="6" data-tags="vegetarian,freezer-friendly" data-search="pumpkin orzo squash pasta simple">
+            <img src="images/pumpkin-orzo.jpg" alt="Pumpkin Orzo" class="recipe-image">
             <div class="recipe-header">
-                <div class="recipe-title">Avocado Egg Mash</div>
+                <div class="recipe-title">3-Ingredient Pumpkin Orzo</div>
                 <div class="recipe-meta">
-                    <span>10 min</span>
-                    <span>1 serving</span>
+                    <span>20 min</span>
+                    <span>2 portions</span>
+                    <span>6-12 months</span>
+                </div>
+                <div class="recipe-tags">
+                    <span class="recipe-tag">vegetarian</span>
+                    <span class="recipe-tag">freezer-friendly</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-section">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        <li>100g orzo pasta</li>
+                        <li>150g pumpkin or butternut squash purée</li>
+                        <li>30g parmesan, grated</li>
+                    </ul>
+                </div>
+                <div class="recipe-section">
+                    <h3>Method</h3>
+                    <ol>
+                        <li>Cook orzo according to package instructions. Drain, reserving some pasta water</li>
+                        <li>Return orzo to pan. Stir in pumpkin purée and parmesan</li>
+                        <li>Add a splash of pasta water to loosen if needed</li>
+                        <li>Serve warm</li>
+                    </ol>
+                </div>
+                <div class="recipe-section">
+                    <div class="recipe-storage">fridge 2 days · freezer 1 month</div>
+                </div>
+                <div class="recipe-section">
+                    <div class="recipe-note">Use shop-bought purée for speed, or roast your own squash.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Chicken & Broccoli Rosti -->
+        <div class="recipe-card" data-meal="dinner" data-time="30" data-age="9" data-tags="finger-food,dairy-free,freezer-friendly" data-search="chicken broccoli rosti potato">
+            <img src="images/chicken-broccoli-rosti.jpg" alt="Chicken Broccoli Rosti" class="recipe-image">
+            <div class="recipe-header">
+                <div class="recipe-title">Chicken & Broccoli Rosti</div>
+                <div class="recipe-meta">
+                    <span>30 min</span>
+                    <span>10 rostis</span>
+                    <span>9+ months</span>
+                </div>
+                <div class="recipe-tags">
+                    <span class="recipe-tag">finger-food</span>
+                    <span class="recipe-tag">dairy-free</span>
+                    <span class="recipe-tag">freezer-friendly</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-section">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        <li>1 large potato, peeled and grated</li>
+                        <li>80g cooked chicken, finely chopped</li>
+                        <li>60g broccoli, finely chopped and steamed</li>
+                        <li>1 egg</li>
+                        <li>1 tbsp olive oil</li>
+                    </ul>
+                </div>
+                <div class="recipe-section">
+                    <h3>Method</h3>
+                    <ol>
+                        <li>Squeeze excess water from grated potato using a clean tea towel</li>
+                        <li>Mix potato, chicken, broccoli and egg in a bowl</li>
+                        <li>Heat oil in a frying pan over medium heat</li>
+                        <li>Drop spoonfuls of mixture, flatten slightly</li>
+                        <li>Cook 3-4 min each side until golden and cooked through</li>
+                    </ol>
+                </div>
+                <div class="recipe-section">
+                    <div class="recipe-storage">fridge 2 days · freezer 2 months</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Cottage Cheese, Berry & Oat Muffins -->
+        <div class="recipe-card" data-meal="breakfast" data-time="35" data-age="6" data-tags="vegetarian,freezer-friendly" data-search="cottage cheese berry oat muffins blueberry">
+            <img src="images/berry-muffins.jpg" alt="Berry Muffins" class="recipe-image">
+            <div class="recipe-header">
+                <div class="recipe-title">Cottage Cheese, Berry & Oat Muffins</div>
+                <div class="recipe-meta">
+                    <span>35 min</span>
+                    <span>12 muffins</span>
                     <span>6+ months</span>
                 </div>
                 <div class="recipe-tags">
-                    <span class="recipe-tag">no-sugar</span>
-                    <span class="recipe-tag">high-iron</span>
+                    <span class="recipe-tag">vegetarian</span>
+                    <span class="recipe-tag">freezer-friendly</span>
                 </div>
             </div>
             <div class="recipe-body">
                 <div class="recipe-section">
                     <h3>Ingredients</h3>
                     <ul>
-                        <li>½ ripe avocado</li>
-                        <li>1 hard-boiled egg</li>
-                        <li>breast milk or formula (optional)</li>
+                        <li>150g rolled oats</li>
+                        <li>200g cottage cheese</li>
+                        <li>2 eggs</li>
+                        <li>1 ripe banana</li>
+                        <li>100g mixed berries (fresh or frozen)</li>
+                        <li>1 tsp baking powder</li>
                     </ul>
                 </div>
                 <div class="recipe-section">
                     <h3>Method</h3>
                     <ol>
-                        <li>Hard boil egg (10 min), cool and peel</li>
-                        <li>Mash avocado and egg together</li>
-                        <li>Thin with milk if needed</li>
+                        <li>Preheat oven to 180°C / 160°C fan / Gas 4</li>
+                        <li>Blend oats, cottage cheese, eggs, banana and baking powder until smooth</li>
+                        <li>Fold in berries</li>
+                        <li>Divide mixture into greased muffin tin</li>
+                        <li>Bake 20-25 min until golden and firm to touch</li>
                     </ol>
                 </div>
                 <div class="recipe-section">
-                    <div class="recipe-storage">best fresh — avocado browns quickly</div>
+                    <div class="recipe-storage">fridge 3 days · freezer 2 months</div>
                 </div>
                 <div class="recipe-section">
-                    <div class="recipe-note">Spread on toast strips for finger food version.</div>
+                    <div class="recipe-note">Great for batch cooking. Defrost overnight or microwave 30 sec.</div>
                 </div>
             </div>
         </div>
-        
-        <div class="no-results hidden" id="noResults">
-            No recipes match — try adjusting filters
+
+        <!-- 7. Rainbow Fritters -->
+        <div class="recipe-card" data-meal="lunch" data-time="20" data-age="9" data-tags="finger-food,vegetarian,freezer-friendly" data-search="rainbow fritters vegetable sweetcorn beetroot courgette">
+            <img src="images/rainbow-fritters.jpg" alt="Rainbow Fritters" class="recipe-image">
+            <div class="recipe-header">
+                <div class="recipe-title">Rainbow Fritters</div>
+                <div class="recipe-meta">
+                    <span>20 min</span>
+                    <span>30 fritters</span>
+                    <span>9+ months</span>
+                </div>
+                <div class="recipe-tags">
+                    <span class="recipe-tag">finger-food</span>
+                    <span class="recipe-tag">vegetarian</span>
+                    <span class="recipe-tag">freezer-friendly</span>
+                </div>
+            </div>
+            <div class="recipe-body">
+                <div class="recipe-section">
+                    <h3>Ingredients (3 colors)</h3>
+                    <ul>
+                        <li><strong>Yellow:</strong> 100g sweetcorn, ½ tsp turmeric, 1 egg, 30g flour</li>
+                        <li><strong>Pink:</strong> 100g cooked beetroot (grated), 1 egg, 30g flour</li>
+                        <li><strong>Green:</strong> 1 courgette (grated), 50g peas, 1 egg, 30g flour</li>
+                    </ul>
+                </div>
+                <div class="recipe-section">
+                    <h3>Method</h3>
+                    <ol>
+                        <li>For each color: mix vegetables, egg and flour</li>
+                        <li>Heat oil in frying pan over medium heat</li>
+                        <li>Drop spoonfuls of mixture, flatten slightly</li>
+                        <li>Cook 2-3 min each side until golden</li>
+                        <li>Drain on kitchen paper</li>
+                    </ol>
+                </div>
+                <div class="recipe-section">
+                    <div class="recipe-storage">fridge 2 days · freezer 2 months</div>
+                </div>
+                <div class="recipe-section">
+                    <div class="recipe-note">Make all 3 colors for a rainbow plate! Great for fussy eaters.</div>
+                </div>
+            </div>
         </div>
+
+        <div class="no-results hidden" id="noResults">No recipes match — try adjusting filters</div>
     </div>
-    
     <script>
         const recipes = document.querySelectorAll('.recipe-card');
         const searchBox = document.getElementById('searchBox');
@@ -446,46 +540,35 @@
         const ageValue = document.getElementById('ageValue');
         const resultsCount = document.getElementById('resultsCount');
         const noResults = document.getElementById('noResults');
-        
         let activeMeal = 'all';
         let activeTags = new Set();
-        
         function updateFilters() {
             const searchTerm = searchBox.value.toLowerCase();
             const maxTime = parseInt(timeSlider.value);
             const minAge = parseInt(ageSlider.value);
             let visible = 0;
-            
             recipes.forEach(recipe => {
                 const meal = recipe.dataset.meal;
                 const time = parseInt(recipe.dataset.time);
                 const age = parseInt(recipe.dataset.age);
                 const tags = recipe.dataset.tags.split(',');
                 const searchText = recipe.dataset.search;
-                
                 let show = true;
-                
                 if (activeMeal !== 'all' && meal !== activeMeal) show = false;
                 if (time > maxTime) show = false;
                 if (age > minAge) show = false;
-                
                 if (activeTags.size > 0) {
                     for (const tag of activeTags) {
                         if (!tags.includes(tag)) show = false;
                     }
                 }
-                
                 if (searchTerm && !searchText.includes(searchTerm)) show = false;
-                
                 recipe.classList.toggle('hidden', !show);
                 if (show) visible++;
             });
-            
             resultsCount.textContent = `${visible} recipe${visible !== 1 ? 's' : ''}`;
             noResults.classList.toggle('hidden', visible > 0);
         }
-        
-        // Meal segment control
         document.querySelectorAll('#mealControl .segment-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('#mealControl .segment-btn').forEach(b => b.classList.remove('active'));
@@ -494,20 +577,14 @@
                 updateFilters();
             });
         });
-        
-        // Time slider
         timeSlider.addEventListener('input', () => {
             timeValue.textContent = `${timeSlider.value} min`;
             updateFilters();
         });
-        
-        // Age slider
         ageSlider.addEventListener('input', () => {
             ageValue.textContent = `${ageSlider.value}+ mo`;
             updateFilters();
         });
-        
-        // Tag toggles
         document.querySelectorAll('#tagToggles .toggle-pill').forEach(btn => {
             btn.addEventListener('click', () => {
                 btn.classList.toggle('active');
@@ -516,7 +593,6 @@
                 updateFilters();
             });
         });
-        
         searchBox.addEventListener('input', updateFilters);
         updateFilters();
     </script>
