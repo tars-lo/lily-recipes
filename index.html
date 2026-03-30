@@ -35,7 +35,6 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* ===== HEADER ===== */
         .header {
             background: linear-gradient(160deg, #fdf2f3 0%, #f5f0fa 100%);
             padding: 28px 20px;
@@ -55,7 +54,6 @@
             font-style: italic;
         }
         
-        /* ===== FILTERS ===== */
         .filters {
             background: var(--card);
             padding: 20px;
@@ -72,7 +70,6 @@
             color: var(--text);
         }
         
-        /* Search */
         .search-box {
             width: 100%;
             padding: 16px 16px 16px 48px;
@@ -85,7 +82,6 @@
         }
         .search-box:focus { outline: none; border-color: var(--blush); }
         
-        /* Buttons Grid */
         .btn-grid { display: grid; gap: 10px; }
         .btn-grid.meals { grid-template-columns: 1fr; }
         .btn-grid.meals .sub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -109,7 +105,6 @@
         .btn.active { background: var(--blush-light); border-color: var(--blush); color: var(--text); }
         .btn.tag-active { background: var(--sage-light); border-color: var(--sage); color: var(--text); }
         
-        /* Sliders */
         .slider-card {
             background: var(--sage-light);
             border-radius: 18px;
@@ -160,7 +155,6 @@
             color: var(--muted);
         }
         
-        /* ===== CARDS ===== */
         .grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -183,6 +177,7 @@
             width: 100%;
             padding-bottom: 100%;
             position: relative;
+            background: var(--blush-light);
         }
         .card-img img {
             position: absolute;
@@ -210,7 +205,6 @@
         }
         .empty.hidden { display: none; }
         
-        /* ===== MODAL ===== */
         .overlay {
             display: none;
             position: fixed;
@@ -242,6 +236,7 @@
             height: 220px;
             object-fit: cover;
             display: block;
+            background: var(--blush-light);
         }
         .modal-x {
             position: absolute;
@@ -365,9 +360,9 @@
             <div class="slider-card">
                 <div class="slider-top">
                     <span class="slider-label">⏱️ Max cooking time</span>
-                    <span class="slider-val" id="timeVal">60 mins</span>
+                    <span class="slider-val" id="timeVal">75 mins</span>
                 </div>
-                <input type="range" min="10" max="60" value="60" id="timeRange">
+                <input type="range" min="5" max="75" value="75" id="timeRange">
             </div>
             <div class="slider-card pink">
                 <div class="slider-top">
@@ -388,7 +383,7 @@
             </div>
         </div>
         
-        <div class="count" id="count">🍴 Showing 7 recipes</div>
+        <div class="count" id="count">🍴 Showing 27 recipes</div>
     </div>
     
     <div class="grid" id="grid"></div>
@@ -406,13 +401,36 @@
 <script>
 (function(){
     var data = [
+        // Original 7 recipes
         {id:1,name:"Cheesy Pasta Bake with Chicken & Broccoli",img:"images/cheesy-pasta-bake.jpg",prep:5,cook:20,time:25,age:9,meal:"dinner",tags:["freezer-friendly"],portions:"4 portions",ingredients:["120g pasta shapes","60g broccoli, broken into florets","80g cooked chicken, cut into strips","200ml crème fraîche","40g cheddar cheese, grated"],method:["Preheat oven to 200°C / 180°C fan / Gas 6","Cook pasta according to package, adding broccoli for last 2 min. Drain","Mix crème fraîche with half the cheddar. Combine with pasta, broccoli and chicken","Transfer to ovenproof dish, top with remaining cheese","Bake 15 min until golden and bubbling"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 2 mins or oven 180°C for 10 mins"},
         {id:2,name:"Tomato, Spinach & Cheese Couscous",img:"images/couscous.jpg",prep:10,cook:15,time:25,age:6,meal:"lunch",tags:["vegetarian"],portions:"4 portions",ingredients:["100g couscous","150ml low-salt vegetable stock","1 tbsp olive oil","2 medium tomatoes, roughly chopped","Handful spinach","30g cheddar cheese, grated"],method:["Heat stock and pour over couscous. Cover, leave 5 min, then fluff","Heat oil in pan. Add tomatoes, cook 5 min until soft","Stir in spinach until wilted. Add cheese, stir until melted","Mix into couscous. Serve warm or cold"],fridge:"2 days",freezer:"1 month",reheat:"Microwave 1 min, stir halfway"},
         {id:3,name:"Mini Courgette & Tomato Pizza Bites",img:"images/pizza-bites.jpg",prep:15,cook:20,time:35,age:9,meal:"snack",tags:["finger-food","vegetarian","freezer-friendly"],portions:"12 bites",ingredients:["1 medium courgette, grated","60g self-raising flour","1 egg","30g cheddar cheese, grated","6 cherry tomatoes, sliced","1 tbsp tomato purée"],method:["Preheat oven to 200°C / 180°C fan","Squeeze water from courgette","Mix courgette, flour, egg, half the cheese","Spoon into mini muffin tin, press down","Top with purée, tomatoes, cheese","Bake 15-20 min until golden"],fridge:"2 days",freezer:"2 months",reheat:"Oven 180°C for 8 mins from frozen"},
         {id:4,name:"3-Ingredient Pumpkin Orzo",img:"images/pumpkin-orzo.jpg",prep:10,cook:10,time:20,age:6,meal:"lunch",tags:["vegetarian","freezer-friendly"],portions:"2 portions",ingredients:["100g orzo pasta","150g pumpkin or butternut squash purée","30g parmesan, grated"],method:["Cook orzo, drain reserving pasta water","Stir in pumpkin purée and parmesan","Add splash of pasta water to loosen","Serve warm"],fridge:"2 days",freezer:"1 month",reheat:"Microwave 1 min, add splash of water",note:"Use shop-bought purée for speed."},
         {id:5,name:"Chicken & Broccoli Rosti",img:"images/chicken-broccoli-rosti.jpg",prep:10,cook:20,time:30,age:9,meal:"dinner",tags:["finger-food","dairy-free","freezer-friendly"],portions:"10 rostis",ingredients:["1 large potato, grated","80g cooked chicken, finely chopped","60g broccoli, finely chopped and steamed","1 egg","1 tbsp olive oil"],method:["Squeeze water from potato","Mix potato, chicken, broccoli and egg","Heat oil in pan","Drop spoonfuls, flatten slightly","Cook 3-4 min each side until golden"],fridge:"2 days",freezer:"2 months",reheat:"Pan-fry from frozen 4 mins each side"},
         {id:6,name:"Cottage Cheese, Berry & Oat Muffins",img:"images/berry-muffins.jpg",prep:10,cook:25,time:35,age:6,meal:"breakfast",tags:["vegetarian","freezer-friendly"],portions:"12 muffins",ingredients:["150g rolled oats","200g cottage cheese","2 eggs","1 ripe banana","100g mixed berries","1 tsp baking powder"],method:["Preheat oven to 180°C / 160°C fan","Blend oats, cottage cheese, eggs, banana, baking powder","Fold in berries","Divide into muffin tin","Bake 20-25 min until golden"],fridge:"3 days",freezer:"2 months",reheat:"Microwave 30 secs or defrost overnight",note:"Great for batch cooking!"},
-        {id:7,name:"Rainbow Fritters",img:"images/rainbow-fritters.jpg",prep:10,cook:10,time:20,age:9,meal:"lunch",tags:["finger-food","vegetarian","freezer-friendly"],portions:"30 fritters",ingredients:["Yellow: 100g sweetcorn, ½ tsp turmeric, 1 egg, 30g flour","Pink: 100g beetroot (grated), 1 egg, 30g flour","Green: 1 courgette (grated), 50g peas, 1 egg, 30g flour"],method:["For each color: mix veg, egg and flour","Heat oil in pan","Drop spoonfuls, flatten","Cook 2-3 min each side","Drain on paper"],fridge:"2 days",freezer:"2 months",reheat:"Pan-fry from frozen 3 mins each side",note:"Make all 3 colors for a rainbow plate!"}
+        {id:7,name:"Rainbow Fritters",img:"images/rainbow-fritters.jpg",prep:10,cook:10,time:20,age:9,meal:"lunch",tags:["finger-food","vegetarian","freezer-friendly"],portions:"30 fritters",ingredients:["Yellow: 100g sweetcorn, ½ tsp turmeric, 1 egg, 30g flour","Pink: 100g beetroot (grated), 1 egg, 30g flour","Green: 1 courgette (grated), 50g peas, 1 egg, 30g flour"],method:["For each color: mix veg, egg and flour","Heat oil in pan","Drop spoonfuls, flatten","Cook 2-3 min each side","Drain on paper"],fridge:"2 days",freezer:"2 months",reheat:"Pan-fry from frozen 3 mins each side",note:"Make all 3 colors for a rainbow plate!"},
+        
+        // New recipes from Annabel Karmel screenshots
+        {id:8,name:"Chicken & Broccoli Rosti (AK)",img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=400&fit=crop",prep:10,cook:20,time:30,age:9,meal:"dinner",tags:["finger-food","freezer-friendly"],portions:"15 rosti",ingredients:["75g sweet potato, peeled and grated","75g potato, peeled and grated","2 spring onions, chopped","1 egg, beaten","2 tsp cornflour","50g cooked chicken, diced","50g cooked broccoli, chopped"],method:["Squeeze liquid from grated potatoes using a tea towel","Mix with spring onions, egg, cornflour, chicken and broccoli","Heat oil in frying pan","Add spoonfuls and flatten with spatula","Fry 3-4 min each side until golden"],fridge:"2 days",freezer:"2 months",reheat:"Oven or air fryer until hot throughout",note:"Stack with baking paper between rosti for freezing"},
+        {id:9,name:"Quick Courgette & Cheese Macaroni",img:"https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=400&fit=crop",prep:5,cook:15,time:20,age:9,meal:"lunch",tags:["vegetarian"],portions:"2-3 portions",ingredients:["75g macaroni pasta","30g cream cheese","25g Parmesan, grated","75g courgette, grated"],method:["Cook macaroni, reserve 3 tbsp water before draining","Return pasta to pan with cream cheese, Parmesan, courgette and reserved water","Stir over heat until cheese melts"],fridge:"2 days",freezer:"1 month",reheat:"Microwave 1 min",note:"Peel courgette before grating to hide the green!"},
+        {id:10,name:"Orzo, Tomato & Tuna Puree",img:"https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=400&fit=crop",prep:10,cook:25,time:35,age:6,meal:"lunch",tags:[],portions:"4 portions",ingredients:["2 tsp olive oil","75g onion, diced","75g carrot, finely diced","50g courgette, diced","75g red pepper, diced","1 clove garlic, crushed","200g passata","150ml water","30g orzo","2 tsp cream cheese","50g tinned tuna, drained","2 tsp basil, chopped"],method:["Heat oil, sauté vegetables 5 min","Add garlic, fry 10 seconds","Add passata, water and orzo, simmer covered 15 min","Stir in cream cheese, tuna and basil","Blend if needed for younger babies"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1-2 mins"},
+        {id:11,name:"Chicken, Bean & Carrot Puree",img:"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=400&fit=crop",prep:5,cook:20,time:25,age:6,meal:"dinner",tags:["dairy-free"],portions:"4 portions",ingredients:["1 tsp sunflower oil","50g onion, chopped","175g carrot, sliced","150g chicken thigh, chopped","100g cannellini beans","300ml unsalted vegetable stock"],method:["Heat oil, fry onion and carrot 2 min","Add chicken and seal","Add beans and stock, simmer covered 20 min","Blend until smooth"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1-2 mins",note:"Dairy-free but still creamy from the beans!"},
+        {id:12,name:"Carrot, Parsnip & Chicken with Rice",img:"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=400&fit=crop",prep:10,cook:20,time:30,age:6,meal:"dinner",tags:[],portions:"2 portions",ingredients:["125g carrot, sliced","100g parsnip, sliced","25g cooked rice","25g cooked chicken, diced finely"],method:["Steam carrot and parsnip 15 min until soft","Blend with 3 tbsp steamer water until smooth","Stir in cooked rice and chicken over heat"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1 min"},
+        {id:13,name:"Lovely Veggie Puree",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop",prep:10,cook:40,time:50,age:6,meal:"lunch",tags:["vegetarian"],portions:"3 portions",ingredients:["1 small onion","1 medium carrot, chopped","25g red pepper, chopped","1 tbsp vegetable oil","70g butternut squash, diced","40g peas","100ml water","30g mature Cheddar, grated"],method:["Fry onion, carrot and pepper 3-4 min","Add squash and water, simmer covered 25-30 min","Add peas, cook 3-4 min more","Stir in cheese and blend"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1-2 mins"},
+        {id:14,name:"Cod, Leek, Potato & Pea Puree",img:"https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&h=400&fit=crop",prep:5,cook:20,time:25,age:6,meal:"dinner",tags:[],portions:"8 portions",ingredients:["1 tbsp olive oil","1 leek, sliced","150g potato, cubed","200ml vegetable stock","100g peas","150g cod, cubed","1 tbsp dill, chopped"],method:["Fry leek and potatoes briefly","Add stock, cover, simmer 10 min","Add peas, cod and dill, simmer 5-8 min","Blend until smooth"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1-2 mins"},
+        {id:15,name:"Apricot & Carrot Teething Rings",img:"https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=400&fit=crop",prep:15,cook:60,time:75,age:6,meal:"snack",tags:["vegetarian","finger-food"],portions:"20 rings",ingredients:["180g carrot, sliced","25g dried apricot","200g plain flour","50g butter, cubed","½ tsp baking powder","½ tsp mixed spice"],method:["Steam carrot with apricot 10 min, blend smooth, cool","Rub butter into flour, baking powder and spice","Mix in cooled puree to form dough, chill 30 min","Roll 1½cm thick, stamp out rings with 4cm + 2cm cutters","Bake 140°C for 50 min until firm"],fridge:"5 days",freezer:"2 months",reheat:"No reheat needed",note:"Great for sore gums!"},
+        {id:16,name:"Sweet Potato & Squash Tots",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",prep:15,cook:10,time:25,age:9,meal:"snack",tags:["finger-food","vegetarian","freezer-friendly"],portions:"12 tots",ingredients:["300g butternut squash, cubed","250g sweet potato, cubed","25g Parmesan, grated","1 tbsp plain flour","30g panko breadcrumbs"],method:["Steam squash and sweet potato 10 min, cool and mash","Mix with Parmesan, flour and breadcrumbs","Shape into 12 tots, roll in extra flour","Pan-fry until golden or air fry 180°C for 8 min"],fridge:"2 days",freezer:"2 months",reheat:"Air fry from frozen 10 mins"},
+        {id:17,name:"Avocado, Kiwi & Pear Puree",img:"https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=400&h=400&fit=crop",prep:5,cook:0,time:5,age:6,meal:"snack",tags:["vegetarian","dairy-free"],portions:"4 portions",ingredients:["1 avocado, diced","1 pear, peeled and diced","1 kiwi, peeled and diced"],method:["Put avocado, pear and kiwi into a jug","Blend until smooth"],fridge:"1 day",freezer:"1 month",reheat:"No cooking required",note:"Perfect quick snack - no cooking needed!"},
+        {id:18,name:"Broccoli & Salmon Patties",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=400&fit=crop",prep:15,cook:15,time:30,age:9,meal:"dinner",tags:["finger-food","freezer-friendly"],portions:"20 patties",ingredients:["100g broccoli, finely chopped","1 large carrot, grated","4 spring onions, chopped","200g salmon fillet, finely chopped","85g Parmesan, grated","2 tbsp ketchup","1 egg, beaten","180ml milk","150g plain flour","½ tsp bicarbonate of soda"],method:["Mix all ingredients in a large bowl","Heat oil in frying pan","Add spoonfuls, spread evenly","Fry 2 min each side until golden and cooked through"],fridge:"2 days",freezer:"2 months",reheat:"Pan-fry from frozen 4 mins each side"},
+        {id:19,name:"Sweet Potato & Peanut Butter Teething Rings",img:"https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=400&fit=crop",prep:20,cook:50,time:70,age:6,meal:"snack",tags:["vegetarian","finger-food"],portions:"20 rings",ingredients:["1 small sweet potato","120g plain flour","½ tsp baking powder","½ tsp ground cinnamon","50g smooth peanut butter","4 tbsp milk"],method:["Microwave sweet potato 8 min, scoop out 50g flesh and mash","Rub peanut butter into flour, baking powder and cinnamon","Add mashed sweet potato and milk, mix to dough","Roll 1cm thick, stamp out rings","Bake 140°C for 40 min until firm"],fridge:"5 days",freezer:"2 months",reheat:"No reheat needed"},
+        {id:20,name:"Butternut Squash & Rice Balls",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",prep:15,cook:20,time:35,age:9,meal:"lunch",tags:["finger-food","vegetarian","freezer-friendly"],portions:"16 balls",ingredients:["200g butternut squash, cubed","250g packet cooked rice","4 spring onions, sliced","50g mature Cheddar, grated","1 tsp fresh thyme, chopped","60g panko breadcrumbs"],method:["Steam squash 10 min until soft, mash","Cook rice per packet, cool","Mix squash, rice, spring onions, cheese, thyme and 40g panko","Shape into 16 balls, roll in remaining panko","Fry until golden or air fry 200°C for 8-10 min"],fridge:"2 days",freezer:"2 months",reheat:"Air fry from frozen 12 mins"},
+        {id:21,name:"Salmon & Sweet Potato Fritters",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=400&fit=crop",prep:5,cook:20,time:25,age:9,meal:"dinner",tags:["finger-food","freezer-friendly"],portions:"12 fritters",ingredients:["1 large sweet potato","100g canned pink salmon, drained","1 egg, beaten","3 tbsp self-raising flour"],method:["Microwave sweet potato 8 min, cool and scoop flesh","Mix with salmon, egg and flour","Heat oil, fry spoonfuls until golden, turning halfway"],fridge:"2 days",freezer:"2 months",reheat:"Pan-fry from frozen 4 mins each side",note:"Great for baby-led weaning!"},
+        {id:22,name:"Parsnip, Carrot & Apricot Puree",img:"https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&h=400&fit=crop",prep:5,cook:10,time:15,age:6,meal:"lunch",tags:["vegetarian","dairy-free"],portions:"4 portions",ingredients:["100g parsnip, diced","225g carrot, sliced","25g dried apricot, chopped"],method:["Steam parsnip, carrot and apricot 10 min","Add 4 tbsp steamer water","Blend until smooth"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1 min"},
+        {id:23,name:"Cheesy Broccoli & Carrot Puree",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop",prep:10,cook:15,time:25,age:6,meal:"lunch",tags:["vegetarian"],portions:"2-3 portions",ingredients:["175g potato, diced","60g carrot, sliced","100g broccoli florets","25g Cheddar, grated"],method:["Simmer potatoes and carrots with 200ml water for 8 min","Add broccoli, simmer 5 min more","Add cheese and blend until smooth"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1-2 mins"},
+        {id:24,name:"Apple, Prune, Banana & Oats Puree",img:"https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=400&h=400&fit=crop",prep:10,cook:10,time:20,age:6,meal:"breakfast",tags:["vegetarian","dairy-free"],portions:"4 portions",ingredients:["25g soft dried prunes, halved","2 large Pink Lady apples, peeled and sliced","25g porridge oats","2 ripe bananas, sliced"],method:["Steam apple and prunes 8-10 min until soft","Place in jug with oats, bananas and a little steamer water","Blend until smooth"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1 min",note:"Great for healthy digestion!"},
+        {id:25,name:"Chicken, Broccoli & Sweetcorn Puree",img:"https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=400&fit=crop",prep:10,cook:10,time:20,age:6,meal:"dinner",tags:[],portions:"4 portions",ingredients:["1 tsp oil","120g chicken thigh, diced","125g potatoes, diced","80g broccoli florets","50g sweetcorn","125ml water"],method:["Fry chicken and potatoes briefly in oil","Add broccoli, sweetcorn and water","Cover and simmer 10 min until tender","Blend until smooth"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1-2 mins"},
+        {id:26,name:"Oat, Prune & Berry Puree",img:"https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=400&h=400&fit=crop",prep:5,cook:10,time:15,age:6,meal:"breakfast",tags:["vegetarian","dairy-free"],portions:"4 portions",ingredients:["25g porridge oats","25g prunes","50g mixed berries","1 small apple, peeled and diced"],method:["Put all ingredients in saucepan, heat until bubbling","Simmer 5 min until apple is soft","Blend until smooth"],fridge:"2 days",freezer:"2 months",reheat:"Microwave 1 min"},
+        {id:27,name:"Tomato, Spinach & Cheese Couscous (AK)",img:"https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=400&h=400&fit=crop",prep:10,cook:15,time:25,age:6,meal:"lunch",tags:["vegetarian"],portions:"4 portions",ingredients:["1 tsp olive oil","100g cherry tomatoes, halved","1 clove garlic, crushed","30g spinach, chopped","50g couscous","100ml weak vegetable stock","15g Parmesan, grated"],method:["Fry tomatoes, garlic and spinach briefly","Add couscous and stock, cover, bring to boil","Turn off heat, let stand 10 min","Mix in cheese before serving"],fridge:"2 days",freezer:"1 month",reheat:"Microwave 1 min"}
     ];
     
     var grid=document.getElementById('grid'),search=document.getElementById('search'),timeRange=document.getElementById('timeRange'),ageRange=document.getElementById('ageRange'),timeVal=document.getElementById('timeVal'),ageVal=document.getElementById('ageVal'),count=document.getElementById('count'),overlay=document.getElementById('overlay'),modalImg=document.getElementById('modalImg'),modalBody=document.getElementById('modalBody'),modalX=document.getElementById('modalX'),modal=document.getElementById('modal');
@@ -423,7 +441,7 @@
         for(var i=0;i<data.length;i++){
             var r=data[i];
             h+='<div class="card" data-id="'+r.id+'" data-meal="'+r.meal+'" data-time="'+r.time+'" data-age="'+r.age+'" data-tags="'+r.tags.join(',')+'" data-s="'+(r.name+' '+r.ingredients.join(' ')).toLowerCase()+'">';
-            h+='<div class="card-img"><img src="'+r.img+'" alt="'+r.name+'"></div>';
+            h+='<div class="card-img"><img src="'+r.img+'" alt="'+r.name+'" onerror="this.style.display=\'none\'"></div>';
             h+='<div class="card-info"><div class="card-name">'+r.name+'</div><div class="card-meta">⏱️ '+r.time+'m · 👶 '+r.age+'+ mo</div></div></div>';
         }
         grid.innerHTML=h;
@@ -464,7 +482,7 @@
         h+='<span>🍽️ '+r.portions+'</span>';
         h+='<span>👶 '+r.age+'+ months</span>';
         h+='</div>';
-        h+='<div class="modal-tags">'+thtml+'</div>';
+        if(thtml)h+='<div class="modal-tags">'+thtml+'</div>';
         h+='<div class="modal-section"><h3>🥗 Ingredients</h3><ul>'+ihtml+'</ul></div>';
         h+='<div class="modal-section"><h3>👩‍🍳 Method</h3><ol>'+mhtml+'</ol></div>';
         
